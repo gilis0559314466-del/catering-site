@@ -1243,33 +1243,25 @@ body.a11y-on .logoTitle{
 }
 
 
+/* =========================================================
+   10) EXTRAS (kept from the tail of the file)
+   (Everything after this in the original file was duplicate/overrides)
+========================================================= */
+h2{
+  margin: 0;
+}
 
+.FOR_CTA{
+  margin-top: 50px !important;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* תוספת לנגישות */
-
+.FOR_CTA a {
+       border-radius: 6px;
+    padding: 12px 15%;
+    margin: 20px;
+    background: #ffffff52;
+    color: white;
+    text-decoration: none !important;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
