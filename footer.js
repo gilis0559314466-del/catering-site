@@ -6,7 +6,7 @@
       if (!el) return;
 
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'footer.html', true);
+      xhr.open('GET', 'footer.partial', true);
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status >= 200 && xhr.status < 300) {

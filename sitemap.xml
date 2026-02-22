@@ -3,20 +3,30 @@
 
   <url>
     <loc>https://giliscatering.co.il/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://giliscatering.co.il/bsisi.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://giliscatering.co.il/murchav.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://giliscatering.co.il/faq.html</loc>
+  </url>
+
+  <url>
+    <loc>https://giliscatering.co.il/areas.html</loc>
+  </url>
+
+  <url>
+    <loc>https://giliscatering.co.il/price-azkara.html</loc>
+  </url>
+
+  <url>
+    <loc>https://giliscatering.co.il/shabbat-catering.html</loc>
   </url>
 
 </urlset>
