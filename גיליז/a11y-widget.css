@@ -1,0 +1,450 @@
+/* a11y-widget.css - drop-in */
+
+:root{
+  --a11y-z: 2147483000;
+  --a11y-font: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --a11y-panel-w: 320px;
+  --a11y-radius: 14px;
+  --a11y-shadow: 0 18px 60px rgba(0,0,0,.25);
+}
+
+/* ===== Floating button ===== */
+#fontOpenBtn{
+  position: fixed;
+  inset-inline-end: 18px;
+  inset-block-end: 18px;
+  z-index: var(--a11y-z);
+  font-family: var(--a11y-font);
+  font-size: 14px;
+  line-height: 1;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.15);
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(0,0,0,.25);
+}
+#fontOpenBtn:focus{ outline: 3px solid #66a3ff; outline-offset: 3px; }
+
+/* ===== Overlay + Panel ===== */
+#fontOverlay{
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--a11y-z) - 2);
+  background: rgba(0,0,0,.45);
+}
+
+#fontPanel{
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+  width: min(var(--a11y-panel-w), 92vw);
+  z-index: calc(var(--a11y-z) - 1);
+  font-family: var(--a11y-font);
+  background: #fff;
+  color: #111;
+  box-shadow: var(--a11y-shadow);
+  border-inline-start: 1px solid rgba(0,0,0,.12);
+  display: flex;
+  flex-direction: column;
+}
+
+#fontPanel .font-head{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid rgba(0,0,0,.10);
+}
+
+#fontPanel .font-head h2{
+  margin: 0;
+  font-size: 16px;
+}
+
+#fontCloseBtn{
+  border: 0;
+  background: transparent;
+  font-size: 18px;
+  cursor:pointer;
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+#fontCloseBtn:focus{ outline: 3px solid #66a3ff; outline-offset: 2px; }
+
+#fontPanel .font-body{
+  padding: 12px 14px 16px;
+  overflow: auto;
+}
+
+#fontPanel .section-title{
+  margin: 14px 0 8px;
+  font-weight: 700;
+  font-size: 13px;
+  color: rgba(0,0,0,.72);
+}
+
+#fontPanel button{
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px 12px;
+  border-radius: var(--a11y-radius);
+  border: 1px solid rgba(0,0,0,.16);
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+  font-size: 14px;
+}
+#fontPanel button:focus{ outline: 3px solid #66a3ff; outline-offset: 2px; }
+#fontCloseBtn{
+  width: 40px !important;
+}
+
+#fontPanel .a11y-primary{
+  background: #111;
+  color: #fff;
+  border-color: rgba(0,0,0,.30);
+}
+#fontPanel .a11y-danger{
+  background: #b00020;
+  color: #fff;
+  border-color: rgba(0,0,0,.20);
+}
+
+#fontPanel .sep{
+  margin: 12px 0;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.10);
+}
+
+#fontPanel [aria-live]{
+  font-size: 12px;
+  color: rgba(0,0,0,.65);
+  margin: 4px 0 0;
+}
+
+/* ===== Zoom wrap ===== */
+#zoomWrap{
+  transform-origin: top center;
+}
+
+/* ===== No motion (strong) ===== */
+html.a11y-no-motion *,
+html.a11y-no-motion *::before,
+html.a11y-no-motion *::after{
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+html.a11y-no-motion{
+  scroll-behavior: auto !important;
+}
+
+/* ===== View modes applied only to content (NOT the widget) ===== */
+html.a11y-mono #zoomWrap{ filter: grayscale(1) !important; }
+/* ===== Apply view modes also to overlays (popups/lightboxes) ===== */
+/* NOTE: these elements are fixed overlays and may sit outside #zoomWrap */
+
+html.a11y-mono #summary-popup .popup-content,
+html.a11y-mono .img-pop,
+html.a11y-mono #lightbox .lightbox-inner{
+  filter: grayscale(1) !important;
+}
+
+html.a11y-sepia #summary-popup .popup-content,
+html.a11y-sepia .img-pop,
+html.a11y-sepia #lightbox .lightbox-inner{
+  filter: sepia(1) !important;
+}
+
+html.a11y-invert #summary-popup .popup-content,
+html.a11y-invert .img-pop,
+html.a11y-invert #lightbox .lightbox-inner{
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+html.a11y-hc #summary-popup .popup-content,
+html.a11y-hc .img-pop,
+html.a11y-hc #lightbox .lightbox-inner{
+  filter: contrast(1.35) saturate(1.2) !important;
+}
+
+/* Black-yellow: forced colors on popup/lightbox UI (not the photos themselves) */
+html.a11y-blackyellow #summary-popup .popup-content,
+html.a11y-blackyellow .img-pop,
+html.a11y-blackyellow #lightbox .lightbox-inner{
+  background: #000 !important;
+  color: #ffd500 !important;
+  border-color: #ffd500 !important;
+}
+
+html.a11y-blackyellow #summary-popup .popup-content *,
+html.a11y-blackyellow .img-pop *,
+html.a11y-blackyellow #lightbox .lightbox-inner *{
+  background: #000 !important;
+  color: #ffd500 !important;
+  border-color: #ffd500 !important;
+}
+
+html.a11y-blackyellow #summary-popup .popup-content a,
+html.a11y-blackyellow #lightbox .lightbox-inner a{
+  text-decoration: underline !important;
+}
+
+/* Readable font + spacing + highlights also inside overlays */
+html.a11y-readable-font #summary-popup *,
+html.a11y-readable-font .img-pop *,
+html.a11y-readable-font #lightbox .lightbox-inner *{
+  font-family: Arial, "Heebo", "Assistant", sans-serif !important;
+  letter-spacing: .02em;
+}
+
+html.a11y-spacing-1 #summary-popup .popup-content{ line-height: 1.7 !important; }
+html.a11y-spacing-2 #summary-popup .popup-content{ line-height: 1.9 !important; }
+
+html.a11y-spacing-1 #summary-popup .popup-content *,
+html.a11y-spacing-1 .img-pop *,
+html.a11y-spacing-1 #lightbox .lightbox-inner *{
+  letter-spacing: .04em !important;
+  word-spacing: .10em !important;
+}
+
+html.a11y-spacing-2 #summary-popup .popup-content *,
+html.a11y-spacing-2 .img-pop *,
+html.a11y-spacing-2 #lightbox .lightbox-inner *{
+  letter-spacing: .07em !important;
+  word-spacing: .16em !important;
+}
+
+html.a11y-hl-links #summary-popup a,
+html.a11y-hl-links #lightbox a{
+  outline: 3px solid #ffb300 !important;
+  outline-offset: 2px !important;
+  text-decoration: underline !important;
+}
+
+html.a11y-hl-headings #summary-popup h1,
+html.a11y-hl-headings #summary-popup h2,
+html.a11y-hl-headings #summary-popup h3,
+html.a11y-hl-headings #summary-popup h4,
+html.a11y-hl-headings #summary-popup h5,
+html.a11y-hl-headings #summary-popup h6{
+  outline: 3px dashed #ffb300 !important;
+  outline-offset: 4px !important;
+}
+
+html.a11y-sepia #zoomWrap{ filter: sepia(1) !important; }
+html.a11y-invert #zoomWrap{ filter: invert(1) hue-rotate(180deg) !important; }
+html.a11y-hc #zoomWrap{ filter: contrast(1.35) saturate(1.2) !important; }
+
+/* Black-yellow: forced colors (aggressive but works “without HTML”) */
+html.a11y-blackyellow #zoomWrap *{
+  background: #000 !important;
+  color: #ffd500 !important;
+  border-color: #ffd500 !important;
+}
+html.a11y-blackyellow #zoomWrap a{ text-decoration: underline !important; }
+
+/* ===== Highlights ===== */
+html.a11y-hl-links #zoomWrap a{
+  outline: 3px solid #ffb300 !important;
+  outline-offset: 2px !important;
+  text-decoration: underline !important;
+}
+html.a11y-hl-headings #zoomWrap h1,
+html.a11y-hl-headings #zoomWrap h2,
+html.a11y-hl-headings #zoomWrap h3,
+html.a11y-hl-headings #zoomWrap h4,
+html.a11y-hl-headings #zoomWrap h5,
+html.a11y-hl-headings #zoomWrap h6{
+  outline: 3px dashed #ffb300 !important;
+  outline-offset: 4px !important;
+}
+
+/* ===== Readable font ===== */
+html.a11y-readable-font #zoomWrap *{
+  font-family: Arial, "Heebo", "Assistant", sans-serif !important;
+  letter-spacing: .02em;
+}
+
+/* ===== Cursor ===== */
+html.a11y-cursor-big, html.a11y-cursor-big *{
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M2 2 L2 26 L8 20 L12 30 L16 28 L12 18 L20 18 Z' fill='white' stroke='black' stroke-width='2'/%3E%3C/svg%3E") 2 2, auto !important;
+}
+html.a11y-cursor-big-black, html.a11y-cursor-big-black *{
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M2 2 L2 26 L8 20 L12 30 L16 28 L12 18 L20 18 Z' fill='black' stroke='white' stroke-width='2'/%3E%3C/svg%3E") 2 2, auto !important;
+}
+
+/* ===== Reading mode ===== */
+html.a11y-reading #zoomWrap{
+  max-width: 980px;
+  margin: 0 auto;
+}
+html.a11y-reading #zoomWrap *{
+  line-height: 1.7 !important;
+}
+
+/* ===== Spacing controls ===== */
+html.a11y-spacing-1 #zoomWrap{ line-height: 1.7 !important; }
+html.a11y-spacing-2 #zoomWrap{ line-height: 1.9 !important; }
+html.a11y-spacing-1 #zoomWrap *{ letter-spacing: .04em !important; word-spacing: .10em !important; }
+html.a11y-spacing-2 #zoomWrap *{ letter-spacing: .07em !important; word-spacing: .16em !important; }
+
+/* ===== ALT fixed label ===== */
+.a11y-alt-label{
+  display:block;
+  font-size: 12px;
+  color: rgba(0,0,0,.70);
+  margin: 6px 0 12px;
+}
+
+/* ===== Target size helpers ===== */
+.a11y-target-fix{
+  min-width: 44px !important;
+  min-height: 44px !important;
+  padding: 10px 12px !important;
+}
+.a11y-target-inline{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.a11y-target-round{ border-radius: 999px !important; }
+.a11y-target-fix-gap{ margin: 4px !important; }
+
+/* ===== Reading focus mask/window ===== */
+#a11yFocusMask{
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--a11y-z) - 3);
+  background: rgba(0,0,0,0);
+  pointer-events: none;
+  display:none;
+}
+#a11yFocusWindow{
+  position: fixed;
+  left: 0; right: 0;
+  z-index: calc(var(--a11y-z) - 2);
+  pointer-events: none;
+  border: 3px solid rgba(255,255,255,.9);
+  box-shadow: 0 0 0 9999px rgba(0,0,0,0.55);
+  display:none;
+}
+
+/* ===== Skip link (injected) ===== */
+#a11ySkipLink{
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: var(--a11y-z);
+  background: #111;
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.25);
+  transform: translateY(-150%);
+  transition: transform .15s ease;
+}
+#a11ySkipLink:focus{ transform: translateY(0); outline: 3px solid #66a3ff; outline-offset: 3px; }
+/* הפאנל עצמו גולל */
+#fontPanel{
+  position: fixed;
+  top: 16px;
+  bottom: 16px;          /* נותן גובה קבוע */
+  right: 16px;
+  width: min(360px, calc(100vw - 32px));
+  overflow-y: auto;      /* גלילה בתוך הפאנל */
+  -webkit-overflow-scrolling: touch;
+  z-index: 999999;
+}
+
+/* האוברליי מכסה הכל */
+#fontOverlay{
+  position: fixed;
+  inset: 0;
+  z-index: 999998;
+}
+/* כפתור נגישות צף */
+#fontOpenBtn{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #38BDF8; /* תכלת יפה */
+  border: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  cursor: pointer;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+/* אפקט ריחוף */
+#fontOpenBtn:hover{
+  transform: scale(1.08);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+/* האייקון בפנים */
+#fontOpenBtn img{
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+}
+
+@media (max-width:600px){
+aside#fontPanel {
+    width: 75%;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
