@@ -1351,11 +1351,13 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         }).then(function (res) {
+
           if (!res.ok) {
             return res.text().then(function (txt) {
               throw new Error("Webhook error: " + res.status + " " + txt);
             });
           }
+          window.location.href = "thank-you.html";
           return true;
         });
       }
@@ -1378,8 +1380,8 @@
         btn.addEventListener("click", function () {
           if (!validatePopupForm()) return;
 
-          var waUrl = "https://wa.me/" + WA_PHONE + "?text=" + encodeURIComponent(buildWhatsappText());
-          window.open(waUrl, "_blank");
+          // var waUrl = "https://wa.me/" + WA_PHONE + "?text=" + encodeURIComponent(buildWhatsappText());
+          // window.open(waUrl, "_blank");
 
           var oldText = btn.textContent;
           btn.disabled = true;
