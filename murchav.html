@@ -49,6 +49,65 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="a11y-widget.css" />
 
+
+  <style>
+    /* Tabs for menu categories */
+    .menu-tabs {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 22px;
+    }
+
+    .menu-tab {
+      appearance: none;
+      border: 1px solid rgba(27, 54, 48, .18);
+      background: #fff;
+      color: #1b3630;
+      border-radius: 16px;
+      padding: 14px 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .06);
+      transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    }
+
+    .menu-tab:hover,
+    .menu-tab:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(27, 54, 48, .45);
+      outline: none;
+    }
+
+    .menu-tab.is-active,
+    .menu-tab[aria-selected="true"] {
+      background: #1b3630;
+      color: #fff;
+      border-color: #1b3630;
+    }
+
+    .menu-panel {
+      display: none;
+    }
+
+    .menu-panel.is-active {
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .menu-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .menu-tab {
+        padding: 12px 8px;
+        font-size: .95rem;
+      }
+    }
+  </style>
+
   <!-- JS -->
   <script src="a11y-widget.js" defer></script>
 
@@ -103,10 +162,7 @@
 </head>
 
 <body class="page-basic">
-  <a href="#main" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;"
-    onfocus="this.style.left='12px';this.style.top='12px';this.style.width='auto';this.style.height='auto';this.style.padding='10px 12px';this.style.background='#fff';this.style.zIndex='99999';this.style.borderRadius='10px';"
-    onblur="this.removeAttribute('style');this.className='skip-link';"
-  >דלג/י לתוכן הראשי</a>
+  <a href="#main" class="skip-link">דילוג לתוכן הראשי</a>
 
   <noscript>
     <div style="margin:16px;padding:12px;border:1px solid rgba(0,0,0,.15);border-radius:12px;background:#fff;">
@@ -173,13 +229,22 @@
 
         <!-- Servings -->
         <div class="servings-row" aria-label="בחירת מספר מנות">
-          <div class="label">בחר מספר מנות</div>
+          <label class="label" for="servings">בחר מספר מנות</label>
           <select id="servings" aria-label="מספר מנות"></select>
         </div>
 
+        <!-- Menu Tabs -->
+        <div class="menu-tabs" role="tablist" aria-label="קטגוריות לבחירת תפריט">
+          <button class="menu-tab is-active" type="button" role="tab" id="tab-salads" aria-controls="panel-salads" aria-selected="true">סלטים</button>
+          <button class="menu-tab" type="button" role="tab" id="tab-starters" aria-controls="panel-starters" aria-selected="false">מנות ראשונות</button>
+          <button class="menu-tab" type="button" role="tab" id="tab-sides" aria-controls="panel-sides" aria-selected="false">תוספות</button>
+          <button class="menu-tab" type="button" role="tab" id="tab-mains" aria-controls="panel-mains" aria-selected="false">מנות עיקריות</button>
+          <button class="menu-tab" type="button" role="tab" id="tab-breads" aria-controls="panel-breads" aria-selected="false">לחמים</button>
+        </div>
+
         <!-- Salads -->
-        <div class="section">
-          <div class="section-title">סלטים</div>
+        <div class="section menu-panel is-active" id="panel-salads" role="tabpanel" aria-labelledby="tab-salads">
+          <h3 class="section-title">סלטים</h3>
           <div class="section-sub hint-blink">
             יש לסמן תחילה את סוג הסלט לפני בחירת כמות · ניתן לראות תמונה בלחיצה על העין
           </div>
@@ -188,30 +253,30 @@
         </div>
 
         <!-- Starters -->
-        <div class="section">
-          <div class="section-title">מנות ראשונות</div>
+        <div class="section menu-panel" id="panel-starters" role="tabpanel" aria-labelledby="tab-starters">
+          <h3 class="section-title">מנות ראשונות</h3>
           <div id="starters-remaining" class="remaining-hint is-ok" aria-live="polite" aria-atomic="true"></div>
           <div id="starters" aria-label="רשימת מנות ראשונות"></div>
         </div>
 
         <!-- Sides -->
-        <div class="section">
-          <div class="section-title">תוספות</div>
+        <div class="section menu-panel" id="panel-sides" role="tabpanel" aria-labelledby="tab-sides">
+          <h3 class="section-title">תוספות</h3>
           <div id="sides-remaining" class="remaining-hint is-ok" aria-live="polite" aria-atomic="true"></div>
           <div id="sides" class="grid" aria-label="רשימת תוספות"></div>
         </div>
 
         <!-- Mains -->
-        <div class="section">
-          <div class="section-title">מנות עיקריות</div>
+        <div class="section menu-panel" id="panel-mains" role="tabpanel" aria-labelledby="tab-mains">
+          <h3 class="section-title">מנות עיקריות</h3>
           <div class="section-sub">המקסימום הכולל נקבע לפי מספר המנות שבחרת</div>
           <div id="mains-remaining" class="remaining-hint is-ok" aria-live="polite" aria-atomic="true"></div>
           <div id="mains" class="grid" aria-label="רשימת עיקריות"></div>
         </div>
 
         <!-- לחמים -->
-        <div class="section">
-          <div class="section-title">לחמים</div>
+        <div class="section menu-panel" id="panel-breads" role="tabpanel" aria-labelledby="tab-breads">
+          <h3 class="section-title">לחמים</h3>
           <div id="breads-remaining" class="remaining-hint is-ok" aria-live="polite" aria-atomic="true"></div>
           <div id="breads" class="grid" aria-label="רשימת לחמים"></div>
         </div>
@@ -233,51 +298,50 @@
 
       <h2 id="summary-title">סיכום ההזמנה</h2>
 
-      <pre id="summary-text"></pre>
+      <div id="summary-text"></div>
 
-      <div class="form-grid" aria-label="פרטי הזמנה">
+      <div class="form-grid" role="group" aria-label="פרטי הזמנה">
 
         <div class="form-field">
           <label for="customerName">שם המזמין *</label>
-          <input type="text" id="customerName" placeholder="שם מלא" autocomplete="name" required>
+          <input type="text" id="customerName" placeholder="שם מלא" autocomplete="name" required aria-describedby="formError">
         </div>
 
         <div class="form-field">
           <label for="deliveryAddress">כתובת למשלוח *</label>
           <input id="deliveryAddress" type="text" placeholder="רחוב, מספר, עיר, דירה וכו׳" autocomplete="street-address"
-            required>
+            required aria-describedby="formError">
         </div>
 
         <div class="form-field">
           <label for="customerPhone">טלפון לחזרה *</label>
           <input id="customerPhone" type="tel" placeholder="לדוגמה: 0501234567" autocomplete="tel" inputmode="tel"
-            required>
+            required aria-describedby="formError">
         </div>
 
         <div class="form-row">
           <div class="form-field">
             <label for="eventDate">תאריך האירוע *</label>
-            <input id="eventDate" type="date" required>
+            <input id="eventDate" type="date" required aria-describedby="formError">
           </div>
 
           <div class="form-field">
             <label for="eventTime">שעת משלוח משוערת *</label>
-            <select id="eventTime" required disabled>
+            <select id="eventTime" aria-describedby="eventTimeHint formError" required disabled>
               <option value="">בחר תאריך קודם</option>
             </select>
-            <div class="hint">בימי שישי עד 15:00</div>
+            <div class="hint" id="eventTimeHint">בימי שישי עד 15:00</div>
           </div>
         </div>
 
-        <div id="formError" class="form-error" aria-live="polite" style="display:none;"></div>
+        <div id="formError" class="form-error" role="alert" aria-live="assertive" aria-atomic="true" style="display:none;"></div>
       </div>
 
       <div class="form-field">
         <label for="orderNotes">הערות (לא חובה)</label>
-        <textarea id="orderNotes"></textarea>
-        <div class="hint">אפשר לכתוב כל בקשה מיוחדת</div>
+          <textarea id="orderNotes" aria-describedby="orderNotesHint"></textarea>
+          <div class="hint" id="orderNotesHint">אפשר לכתוב כל בקשה מיוחדת</div>
       </div>
-
       <!-- נשאר inline כדי לא לשבור עיצוב קיים (styles.css לא נוגע) -->
       <style>
         .form-field textarea {
@@ -323,9 +387,9 @@
   </a>
 
   <!-- IMAGE POPOVER -->
-  <div id="img-pop" class="img-pop" aria-hidden="true">
+  <div id="img-pop" class="img-pop" role="dialog" aria-label="תצוגה מקדימה של מנה" aria-hidden="true">
     <button id="img-pop-close" class="img-pop-close" type="button" aria-label="סגירה">×</button>
-    <img id="img-pop-img" src="" alt="" loading="lazy" decoding="async">
+    <img id="img-pop-img" src="" alt="תצוגה מקדימה של מנה" loading="lazy" decoding="async">
   </div>
 
   <script>
@@ -565,13 +629,13 @@
             + '  <input type="checkbox" id="' + type + '-' + i + '" class="' + type + '-check">'
             + '  <label for="' + type + '-' + i + '">' + escapeHtml(name) + extraHtml + '</label>'
             + '  <div class="number-picker">'
-            + '    <select id="qty-' + type + '-' + i + '" disabled>'
+            + '    <select id="qty-' + type + '-' + i + '" aria-label="כמות עבור ' + escapeHtml(name) + '" disabled>'
             + buildQtyOptionsHtml(type)
             + '    </select>'
             + '  </div>'
-            + '  <div class="eye-icon" tabindex="0" role="button" aria-label="תצוגה מקדימה" aria-haspopup="dialog" data-src="assets/food/' + type + '-' + i + '.png" data-alt="' + escapeHtml(name) + '">'
+            + '  <button class="eye-icon" type="button" aria-label="תצוגה מקדימה עבור ' + escapeHtml(name) + '" aria-haspopup="dialog" data-src="assets/food/' + type + '-' + i + '.png" data-alt="' + escapeHtml(name) + '">'
             + '    👁'
-            + '  </div>'
+            + '  </button>'
             + '</div>';
         }
 
@@ -589,7 +653,7 @@
           if (!mainsGroups.hasOwnProperty(g)) continue;
 
           html += '<div class="mains-group">';
-          html += '  <div class="mains-group-title">' + escapeHtml(g) + '</div>';
+          html += '  <h4 class="mains-group-title">' + escapeHtml(g) + '</h4>';
           html += '  <div class="grid">';
 
           var list = mainsGroups[g];
@@ -606,9 +670,9 @@
               + '  <input type="checkbox" id="main-' + idx + '" class="main-check">'
               + '  <label for="main-' + idx + '">' + escapeHtml(name) + extraHtml + '</label>'
               + '  <div class="number-picker">'
-              + '    <select id="qty-main-' + idx + '" disabled>' + buildQtyOptionsHtml("main") + '</select>'
+              + '    <select id="qty-main-' + idx + '" aria-label="כמות עבור ' + escapeHtml(name) + '" disabled>' + buildQtyOptionsHtml("main") + '</select>'
               + '  </div>'
-              + '  <div class="eye-icon" tabindex="0" role="button" aria-label="תצוגה מקדימה" aria-haspopup="dialog" data-src="assets/food/main-' + idx + '.png" data-alt="' + escapeHtml(name) + '">👁</div>'
+              + '  <button class="eye-icon" type="button" aria-label="תצוגה מקדימה עבור ' + escapeHtml(name) + '" aria-haspopup="dialog" data-src="assets/food/main-' + idx + '.png" data-alt="' + escapeHtml(name) + '">👁</button>'
               + '</div>';
 
             idx++;
@@ -632,7 +696,7 @@
           if (!startersGroups.hasOwnProperty(g)) continue;
 
           html += '<div class="mains-group">';
-          html += '  <div class="mains-group-title">' + escapeHtml(g) + '</div>';
+          html += '  <h4 class="mains-group-title">' + escapeHtml(g) + '</h4>';
           html += '  <div class="grid">';
 
           var list = startersGroups[g];
@@ -647,9 +711,9 @@
               + '  <input type="checkbox" id="starter-' + idx + '" class="starter-check">'
               + '  <label for="starter-' + idx + '">' + escapeHtml(name) + extraHtml + '</label>'
               + '  <div class="number-picker">'
-              + '    <select id="qty-starter-' + idx + '" disabled>' + buildQtyOptionsHtml("starter") + '</select>'
+              + '    <select id="qty-starter-' + idx + '" aria-label="כמות עבור ' + escapeHtml(name) + '" disabled>' + buildQtyOptionsHtml("starter") + '</select>'
               + '  </div>'
-              + '  <div class="eye-icon" tabindex="0" role="button" aria-label="תצוגה מקדימה" aria-haspopup="dialog" data-src="assets/food/starter-' + idx + '.png" data-alt="' + escapeHtml(name) + '">👁</div>'
+              + '  <button class="eye-icon" type="button" aria-label="תצוגה מקדימה עבור ' + escapeHtml(name) + '" aria-haspopup="dialog" data-src="assets/food/starter-' + idx + '.png" data-alt="' + escapeHtml(name) + '">👁</button>'
               + '</div>';
 
             idx++;
@@ -667,6 +731,19 @@
         renderList(sidesList, "side", "sides");
         renderMainsGrouped("mains");
         renderList(breadsList, "bread", "breads");
+      }
+
+      function selectDefaultBread() {
+        var idx = breadsList.indexOf("לחמניית המוציא");
+        if (idx < 0) return;
+
+        var cb = $("bread-" + idx);
+        var sel = $("qty-bread-" + idx);
+        if (!cb || !sel) return;
+
+        cb.checked = true;
+        sel.disabled = false;
+        sel.value = String(defaultQty("bread"));
       }
 
       /* =======================
@@ -720,6 +797,45 @@
         return { totalQty: totalQty, checkedCount: checkedCount };
       }
 
+      var quotaToastTimer = null;
+
+      function showQuotaMessage(msg) {
+        var box = $("quota-toast");
+        if (!box) {
+          box = document.createElement("div");
+          box.id = "quota-toast";
+          box.className = "quota-toast";
+          box.setAttribute("role", "alert");
+          box.setAttribute("aria-live", "assertive");
+          box.setAttribute("aria-atomic", "true");
+          document.body.appendChild(box);
+        }
+
+        box.textContent = msg;
+        box.classList.remove("is-visible");
+        void box.offsetWidth;
+        box.classList.add("is-visible");
+
+        clearTimeout(quotaToastTimer);
+        quotaToastTimer = setTimeout(function () {
+          box.classList.remove("is-visible");
+        }, 5200);
+      }
+
+      function setLimitHint(check, locked) {
+        if (!check) return;
+        var item = check.closest ? check.closest(".item") : null;
+        if (locked) {
+          check.setAttribute("aria-disabled", "true");
+          check.setAttribute("data-limit-locked", "true");
+          if (item) item.classList.add("is-limit-locked");
+        } else {
+          check.removeAttribute("aria-disabled");
+          check.removeAttribute("data-limit-locked");
+          if (item) item.classList.remove("is-limit-locked");
+        }
+      }
+
       function applyLocking(type) {
         if (type !== "main") {
           var limit = getLimit(type);
@@ -727,9 +843,15 @@
           var checks = qsAll("." + type + "-check");
 
           if (total >= limit) {
-            for (var i = 0; i < checks.length; i++) if (!checks[i].checked) checks[i].disabled = true;
+            for (var i = 0; i < checks.length; i++) {
+              checks[i].disabled = false;
+              setLimitHint(checks[i], !checks[i].checked);
+            }
           } else {
-            for (var j = 0; j < checks.length; j++) checks[j].disabled = false;
+            for (var j = 0; j < checks.length; j++) {
+              checks[j].disabled = false;
+              setLimitHint(checks[j], false);
+            }
           }
           return;
         }
@@ -741,9 +863,15 @@
         var shouldLockNew = (stats.checkedCount >= LIMIT_MAIN_TYPES) || (stats.totalQty >= servings);
 
         if (shouldLockNew) {
-          for (var k = 0; k < checksMain.length; k++) if (!checksMain[k].checked) checksMain[k].disabled = true;
+          for (var k = 0; k < checksMain.length; k++) {
+            checksMain[k].disabled = false;
+            setLimitHint(checksMain[k], !checksMain[k].checked);
+          }
         } else {
-          for (var m = 0; m < checksMain.length; m++) checksMain[m].disabled = false;
+          for (var m = 0; m < checksMain.length; m++) {
+            checksMain[m].disabled = false;
+            setLimitHint(checksMain[m], false);
+          }
         }
       }
 
@@ -795,7 +923,7 @@
               total -= q;
             }
           }
-          alert("מספר העיקריות עודכן לפי מספר המנות. הורדנו בחירות כדי לא לחרוג מהמגבלה.");
+          showQuotaMessage("מספר העיקריות עודכן לפי מספר המנות. הורדנו בחירות כדי לא לחרוג מהמגבלה.");
         }
 
         var stats = getMainStats();
@@ -810,7 +938,7 @@
               stats = getMainStats();
             }
           }
-          alert("ניתן לבחור עד 3 סוגי עיקריות בלבד. הורדנו בחירות כדי לעמוד במגבלה.");
+          showQuotaMessage("ניתן לבחור עד 3 סוגי עיקריות בלבד. הורדנו בחירות כדי לעמוד במגבלה.");
         }
       }
 
@@ -833,7 +961,7 @@
                 sel3.value = "10";
               }
             }
-            alert("חרגת מהמגבלה של מספר המנות!");
+            showQuotaMessage("חרגת מהמגבלה של מספר המנות.");
           }
 
           var checked = qsAll(".main-check:checked").length;
@@ -848,7 +976,7 @@
                 checked--;
               }
             }
-            alert("ניתן לבחור עד 3 סוגי עיקריות בלבד.");
+            showQuotaMessage("ניתן לבחור עד 3 סוגי עיקריות בלבד.");
           }
           return;
         }
@@ -873,10 +1001,10 @@
           }
         }
 
-        if (type === "starter") alert("חרגת מהמגבלה של מנות ראשונות!");
-        if (type === "salad") alert("חרגת מהמגבלה של 7 סלטים בסך הכל!");
-        if (type === "side") alert("חרגת מהמגבלה של 3 תוספות בסך הכל!");
-        if (type === "bread") alert("ניתן לבחור לחם אחד בלבד!");
+        if (type === "starter") showQuotaMessage("חרגת מהמגבלה של מנות ראשונות.");
+        if (type === "salad") showQuotaMessage("חרגת מהמגבלה של 7 סלטים בסך הכל.");
+        if (type === "side") showQuotaMessage("חרגת מהמגבלה של 3 תוספות בסך הכל.");
+        if (type === "bread") showQuotaMessage("ניתן לבחור לחם אחד בלבד.");
       }
 
       function handleCheckboxChange(type, idx) {
@@ -888,7 +1016,7 @@
           if (type === "main") {
             var checkedNow = qsAll(".main-check:checked").length;
             if (checkedNow > LIMIT_MAIN_TYPES) {
-              alert("ניתן לבחור עד 3 סוגי עיקריות בלבד.");
+              showQuotaMessage("ניתן לבחור עד 3 סוגי עיקריות בלבד.");
               cb.checked = false;
               sel.disabled = true;
               sel.value = String(defaultQty(type));
@@ -900,7 +1028,7 @@
           var limit = getLimit(type);
           var before = getTotal(type) - defaultQty(type);
           if (before >= limit) {
-            alert("הגעת למקסימום המותר בקטגוריה הזו. כדי לבחור פריט נוסף, הורד/י כמות או בטל/י פריט קיים.");
+            showQuotaMessage("עברת את המכסה בקטגוריה הזו. כדי לבחור פריט נוסף, בטל/י בחירה קיימת או הורד/י כמות.");
             cb.checked = false;
             sel.disabled = true;
             sel.value = String(defaultQty(type));
@@ -1214,6 +1342,37 @@
         setRemainingHint("mains-remaining", msg);
       }
 
+      var _popupLastFocus = null;
+
+      function getFocusable(root) {
+        if (!root) return [];
+        return root.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+      }
+
+      function trapFocusInDialog(e, dialog) {
+        if (e.key !== "Tab") return;
+        var focusables = getFocusable(dialog);
+        if (!focusables || !focusables.length) return;
+
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+
+      function setModalBackgroundHidden(hidden) {
+        var page = document.getElementById("zoomWrap") || document.getElementById("main");
+        if (!page) return;
+        if (hidden) page.setAttribute("aria-hidden", "true");
+        else page.removeAttribute("aria-hidden");
+      }
+
       function openPopup() {
         var raw = buildSummaryText();
 
@@ -1236,12 +1395,26 @@
         popup.style.display = "block";
         popup.setAttribute("aria-hidden", "false");
         validatePopupForm();
+
+        _popupLastFocus = document.activeElement;
+
+        var dialog = document.querySelector("#summary-popup .popup-content");
+        if (dialog) {
+          dialog.setAttribute("tabindex", "-1");
+          dialog.focus();
+        }
+        setModalBackgroundHidden(true);
+        document.body.style.overflow = "hidden";
       }
 
       function closePopup() {
         var popup = $("summary-popup");
         popup.style.display = "none";
         popup.setAttribute("aria-hidden", "true");
+
+        document.body.style.overflow = "";
+        setModalBackgroundHidden(false);
+        if (_popupLastFocus && _popupLastFocus.focus) _popupLastFocus.focus();
       }
 
       function bindCoreButtons() {
@@ -1259,13 +1432,29 @@
         }
       }
 
+      document.addEventListener("keydown", function (e) {
+        var popup = $("summary-popup");
+        if (!popup || popup.getAttribute("aria-hidden") === "true") return;
+
+        var dialog = document.querySelector("#summary-popup .popup-content");
+        if (!dialog) return;
+
+        if (e.key === "Escape") closePopup();
+        trapFocusInDialog(e, dialog);
+      });
+
       /* =======================
          FORM VALIDATION + SEND
       ======================= */
       function setFieldValidity(el, ok) {
         if (!el) return;
-        if (ok) el.classList.remove("is-invalid");
-        else el.classList.add("is-invalid");
+        if (ok) {
+          el.classList.remove("is-invalid");
+          el.setAttribute("aria-invalid", "false");
+        } else {
+          el.classList.add("is-invalid");
+          el.setAttribute("aria-invalid", "true");
+        }
       }
 
       function setFormError(msg) {
@@ -1546,6 +1735,8 @@
         pop.setAttribute("aria-hidden", "false");
 
         positionPopover(pop, anchorEl);
+        var closeBtn = $("img-pop-close");
+        if (closeBtn) closeBtn.focus();
       }
 
       function closeImgPop() {
@@ -1559,6 +1750,7 @@
         img.src = "";
         img.alt = "";
         currentPreviewSrc = "";
+        if (currentAnchor && currentAnchor.focus) currentAnchor.focus();
         currentAnchor = null;
       }
 
@@ -1667,6 +1859,66 @@
         refreshTimes();
       }
 
+
+
+      function initMenuTabs() {
+        var tabs = qsAll(".menu-tab");
+        var panels = qsAll(".menu-panel");
+        if (!tabs || !tabs.length || !panels || !panels.length) return;
+
+        function activateTab(tab) {
+          if (!tab) return;
+          var panelId = tab.getAttribute("aria-controls");
+          if (!panelId) return;
+
+          for (var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove("is-active");
+            tabs[i].setAttribute("aria-selected", "false");
+            tabs[i].setAttribute("tabindex", "-1");
+          }
+
+          for (var j = 0; j < panels.length; j++) {
+            panels[j].classList.remove("is-active");
+            panels[j].setAttribute("hidden", "hidden");
+          }
+
+          tab.classList.add("is-active");
+          tab.setAttribute("aria-selected", "true");
+          tab.setAttribute("tabindex", "0");
+
+          var panel = $(panelId);
+          if (panel) {
+            panel.classList.add("is-active");
+            panel.removeAttribute("hidden");
+          }
+        }
+
+        for (var k = 0; k < tabs.length; k++) {
+          (function (tab) {
+            tab.addEventListener("click", function () {
+              activateTab(tab);
+            });
+
+            tab.addEventListener("keydown", function (e) {
+              var currentIndex = -1;
+              for (var x = 0; x < tabs.length; x++) {
+                if (tabs[x] === tab) currentIndex = x;
+              }
+
+              if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+                e.preventDefault();
+                var dir = (e.key === "ArrowRight") ? -1 : 1;
+                var nextIndex = (currentIndex + dir + tabs.length) % tabs.length;
+                activateTab(tabs[nextIndex]);
+                tabs[nextIndex].focus();
+              }
+            });
+          })(tabs[k]);
+        }
+
+        activateTab(tabs[0]);
+      }
+
       /* =======================
          INIT
       ======================= */
@@ -1677,7 +1929,9 @@
         initEventTimeByDate();
 
         renderAll();
+        initMenuTabs();
         bindMenuEvents();
+        selectDefaultBread();
 
         updateMainQtyOptions();
         applyAllLocking();
@@ -1699,6 +1953,12 @@
     })();
   </script>
 
+  <script src="cookie-consent-config.js"></script>
+  <script src="cookie-consent.bundle.js" defer></script>
 </body>
 
 </html>
+
+<!-- Injection By NetFree -->
+<script src="https://netfree.link/injection-script/note-in-site.js" type="text/javascript" async  id="netfree-note-site" jsondata="%7B%22noteSite%22:%22%D7%9B%D7%93%D7%99%20%D7%A9%D7%94%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%94%D7%96%D7%94%20%D7%99%D7%97%D7%96%D7%A8%D7%95%20%D7%9E%D7%91%D7%93%D7%99%D7%A7%D7%94%2C%20%D7%99%D7%A9%20%D7%9C%D7%94%D7%92%D7%93%D7%99%D7%A8%20%5C%22%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A1%D7%A0%D7%9F%20%D7%AA%D7%95%D7%9B%D7%9F%20%D7%A9%D7%99%D7%93%D7%95%D7%A2%20%D7%9B%D7%90%D7%99%D7%A9%D7%99%20%D7%90%D7%95%20%D7%A4%D7%A8%D7%98%D7%99%5C%22%20%D7%91%D7%94%D7%92%D7%93%D7%A8%D7%95%D7%AA%20%D7%A1%D7%99%D7%A0%D7%95%D7%9F%20%5B%5B%D7%A6%D7%90%D7%98_AI_%D7%91%D7%A0%D7%98%D7%A4%D7%A8%D7%99%7C%D7%94%D7%99%D7%9B%D7%A0%D7%A1%D7%95%20%D7%9C%D7%9B%D7%90%D7%9F%20%D7%9C%D7%94%D7%A1%D7%91%D7%A8%20%D7%9E%D7%A4%D7%95%D7%A8%D7%98%5D%5D%22%2C%22noteSiteEn%22:%22For%20images%20on%20this%20website%20to%20work%20you%20need%20to%20set%20%5C%22Filter%20content%20that%20is%20known%20as%20personal%20or%20private%5C%22%20%5B%5BAI_Chats_in_NetFree%7CClick%20here%20to%20read%20more%5D%5D%22%7D"></script><script src="//netfree.link/injection-script/go-payment.js" type="text/javascript" async ></script>
+<script src="//netfree.link/injection-script/popup-card-init.js" type="text/javascript" async ></script>

@@ -74,11 +74,13 @@
       '.cc-banner{position:fixed;inset:auto 0 0 0;z-index:9999;padding:14px;direction:' + (cfg.rtl ? 'rtl' : 'ltr') + ';font-family:inherit;}\n' +
       '.cc-inner{max-width:1100px;margin:0 auto;background:' + cfg.theme.primaryBg + ';color:' + cfg.theme.primaryText + ';border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;box-shadow:0 10px 30px rgba(0,0,0,.25);}\n' +
       '.cc-text{font-size:14px;line-height:1.4;}\n' +
-      '.cc-text a{color:' + cfg.theme.primaryText + ';text-decoration:underline;margin-' + (cfg.rtl ? 'right' : 'left') + ':6px;}\n' +
+      '.cc-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;}\n' +
+      '.cc-link{display:inline;border:0;background:transparent;color:' + cfg.theme.primaryText + ';text-decoration:underline;margin-' + (cfg.rtl ? 'right' : 'left') + ':6px;padding:0;cursor:pointer;font:inherit;}\n' +
       '.cc-actions{display:flex;gap:10px;flex-shrink:0;}\n' +
-      '.cc-btn{border:0;border-radius:999px;padding:10px 14px;cursor:pointer;font-size:14px;}\n' +
+      '.cc-btn{border:0;border-radius:999px;padding:10px 14px;min-height:44px;cursor:pointer;font-size:14px;}\n' +
       '.cc-btn-primary{background:' + cfg.theme.primaryBtnBg + ';color:' + cfg.theme.primaryBtnText + ';font-weight:700;}\n' +
       '.cc-btn-ghost{background:transparent;color:' + cfg.theme.primaryText + ';border:1px solid rgba(255,255,255,0.4);}\n' +
+      '.cc-btn:focus-visible,.cc-link:focus-visible,.cc-close:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px rgba(0,0,0,.35);}\n' +
       '@media (max-width:640px){.cc-inner{flex-direction:column;align-items:stretch;}.cc-actions{justify-content:flex-end;}}\n' +
       '.cc-modal{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:10000;display:none;direction:' + (cfg.rtl ? 'rtl' : 'ltr') + ';}\n' +
       '.cc-modal.is-open{display:block;}\n' +
@@ -102,10 +104,13 @@
 
     var banner =
       '<div id="ccBanner" class="cc-banner" hidden>' +
-        '<div class="cc-inner" role="dialog" aria-live="polite" aria-label="הודעת קוקיז">' +
+        '<div class="cc-inner" role="dialog" aria-labelledby="ccBannerTitle" aria-describedby="ccBannerDesc">' +
           '<div class="cc-text">' +
+            '<h2 id="ccBannerTitle" class="cc-sr-only">הודעת קוקיז</h2>' +
+            '<span id="ccBannerDesc">' +
             escHtml(cfg.bannerText) + ' ' +
-            '<a href="#" data-cc-open-privacy>' + escHtml(cfg.privacyLinkText) + '</a>' +
+            '</span>' +
+            '<button class="cc-link" type="button" data-cc-open-privacy>' + escHtml(cfg.privacyLinkText) + '</button>' +
           '</div>' +
           '<div class="cc-actions">' +
             '<button id="ccAcceptBtn" class="cc-btn cc-btn-primary" type="button">' + escHtml(cfg.acceptText) + '</button>' +
@@ -116,9 +121,9 @@
 
     var modal =
       '<div id="ccModal" class="cc-modal" aria-hidden="true">' +
-        '<div class="cc-panel" role="dialog" aria-modal="true" aria-label="מדיניות פרטיות">' +
+        '<div class="cc-panel" role="dialog" aria-modal="true" aria-labelledby="ccModalTitle">' +
           '<button id="ccCloseBtn" class="cc-close" type="button" aria-label="סגירה">✕</button>' +
-          '<h2>מדיניות פרטיות</h2>' +
+          '<h2 id="ccModalTitle">מדיניות פרטיות</h2>' +
           '<p><small>עודכן לאחרונה: <span>' + date + '</span></small></p>' +
 
           '<h3>1. מי אנחנו</h3>' +
@@ -168,11 +173,36 @@
     return banner + modal;
   }
 
+  var lastFocus = null;
+
+  function getFocusable(root) {
+    if (!root) return [];
+    return root.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+  }
+
+  function trapFocus(e) {
+    if (e.key !== 'Tab') return;
+    var panel = qs('#ccModal .cc-panel');
+    var items = getFocusable(panel);
+    if (!items || !items.length) return;
+    var first = items[0];
+    var last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
   function openModal() {
     var m = qs('#ccModal');
     if (!m) return;
+    lastFocus = document.activeElement;
     m.classList.add('is-open');
     m.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
     var closeBtn = qs('#ccCloseBtn');
     if (closeBtn) closeBtn.focus();
   }
@@ -182,12 +212,18 @@
     if (!m) return;
     m.classList.remove('is-open');
     m.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
   function showBanner() {
     var b = qs('#ccBanner');
     if (!b) return;
     b.hidden = false;
+    window.setTimeout(function () {
+      var acceptBtn = qs('#ccAcceptBtn');
+      if (acceptBtn && document.activeElement === document.body) acceptBtn.focus();
+    }, 80);
   }
 
   function hideBanner() {
@@ -223,7 +259,9 @@
     });
 
     document.addEventListener('keydown', function (e) {
+      if (!modal || modal.getAttribute('aria-hidden') === 'true') return;
       if (e.key === 'Escape') closeModal();
+      trapFocus(e);
     });
   }
 

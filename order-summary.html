@@ -99,7 +99,7 @@
       font-size: 21px;
       font-weight: 800;
       color: #3c2815;
-      margin-bottom: 14px;
+      margin: 0 0 14px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -238,8 +238,8 @@
         פרטי ההזמנה מוצגים כאן כפי שנשלחו מהאתר. יש לבדוק את הפרטים ולאשר מול הלקוח.
       </div>
 
-      <div class="section">
-        <div class="section-title">👤 פרטי לקוח</div>
+      <section class="section" aria-labelledby="customer-details-title">
+        <h2 class="section-title" id="customer-details-title">פרטי לקוח</h2>
         <div class="grid">
           <div class="field">
             <span class="label">שם לקוח</span>
@@ -251,10 +251,10 @@
             <span class="value" id="phone"></span>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="section">
-        <div class="section-title">📅 פרטי האירוע</div>
+      <section class="section" aria-labelledby="event-details-title">
+        <h2 class="section-title" id="event-details-title">פרטי האירוע</h2>
         <div class="grid">
           <div class="field">
             <span class="label">תאריך אירוע</span>
@@ -281,10 +281,10 @@
             <span class="value" id="address"></span>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="section">
-        <div class="section-title">🍽️ פרטי ההזמנה</div>
+      <section class="section" aria-labelledby="order-details-title">
+        <h2 class="section-title" id="order-details-title">פרטי ההזמנה</h2>
         <div class="grid">
           <div class="field">
             <span class="label">דיל נבחר</span>
@@ -301,11 +301,11 @@
             <span class="value notes" id="notes"></span>
           </div>
         </div>
-      </div>
+      </section>
 
       <div class="actions">
-        <a class="btn btn-primary" id="whatsappBtn" target="_blank">שליחה ללקוח בוואטסאפ</a>
-        <button class="btn btn-secondary" onclick="window.print()">שמירה / הדפסה כ-PDF</button>
+        <a class="btn btn-primary" id="whatsappBtn" href="https://wa.me/972559314466" target="_blank" rel="noopener">שליחה ללקוח בוואטסאפ</a>
+        <button class="btn btn-secondary" id="printBtn" type="button">שמירה / הדפסה כ-PDF</button>
       </div>
     </section>
 
@@ -359,8 +359,20 @@
       whatsappPhone = "972" + whatsappPhone.substring(1);
     }
 
-    document.getElementById("whatsappBtn").href =
-      "https://wa.me/" + whatsappPhone + "?text=" + message;
+    const whatsappBtn = document.getElementById("whatsappBtn");
+    if (whatsappPhone) {
+      whatsappBtn.href = "https://wa.me/" + whatsappPhone + "?text=" + message;
+      whatsappBtn.removeAttribute("aria-disabled");
+    } else {
+      whatsappBtn.removeAttribute("href");
+      whatsappBtn.setAttribute("aria-disabled", "true");
+    }
+
+    document.getElementById("printBtn").addEventListener("click", function () {
+      window.print();
+    });
   </script>
+  <script src="cookie-consent-config.js"></script>
+  <script src="cookie-consent.bundle.js" defer></script>
 </body>
 </html>

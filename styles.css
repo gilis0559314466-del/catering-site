@@ -3,7 +3,8 @@
 ========================================================= */
 :root{
   --primary:#630010;
-  --accent:#C9A24D;
+  --accent:#8A6500;
+  --accent-soft:#C9A24D;
 
   --bg:#F7F6F4;
   --text:#1E1E1E;
@@ -15,7 +16,7 @@
   --border: rgba(0,0,0,.08);
   --shadow: rgba(0,0,0,.14);
 
-  --focus: rgba(201,162,77,.95);
+  --focus:#005FCC;
   --marqueeText:#2b1a05;
   --arrowBg: linear-gradient(135deg,#ffffff,#f7f6f4);
 
@@ -46,18 +47,54 @@ body{
   line-height:1.6;
 }
 img{ max-width:100%; height:auto; display:block; }
+.seo-content{
+  width:min(980px, calc(100% - 32px));
+  margin:36px auto;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px;
+  box-shadow:0 14px 32px rgba(0,0,0,.08);
+}
+.seo-content h1,
+.seo-content h2{ color:var(--primary); }
 
 :focus-visible{
   outline:3px solid var(--focus);
   outline-offset:3px;
   border-radius:10px;
 }
+.skip-link{
+  position:absolute;
+  top:8px;
+  right:8px;
+  z-index:9999;
+  padding:10px 12px;
+  background:#fff;
+  color:#000;
+  border:2px solid currentColor;
+  border-radius:8px;
+  transform:translateY(-140%);
+  transition:transform .15s ease;
+}
+.skip-link:focus{ transform:translateY(0); }
+.sr-only{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0,0,0,0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
+}
 
 /* =========================================================
    1) HEADER (COMMON)
 ========================================================= */
 .top-header{
-  background: var(--bg);
+  background: #1b3630;
   border-bottom:2px solid var(--accent);
 }
 .header-inner{
@@ -114,6 +151,17 @@ img{ max-width:100%; height:auto; display:block; }
   from{ transform:translateX(0%); }
   to{ transform:translateX(50%); }
 }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
+  }
+}
 
 /* =========================================================
    3) ICONS (SVG HELPERS) (COMMON)
@@ -161,7 +209,7 @@ img{ max-width:100%; height:auto; display:block; }
   bottom:88px;
   left:16px;
   background:#25d366;
-  color:#fff;
+  color:#000;
   padding:16px 22px;
   border-radius:50px;
   font-weight:900;
@@ -500,7 +548,10 @@ body.a11y-on .logoTitle{
   background:var(--surface);
   scroll-snap-align:center;
   cursor:zoom-in;
+  padding:0;
+  font:inherit;
 }
+.page-home .c-item:focus-visible{ outline:3px solid var(--focus); outline-offset:4px; }
 .page-home .c-item img{ width:100%; height:100%; object-fit:cover; }
 .page-home .c-item.is-center{ opacity:1; transform:scale(1.02); }
 
@@ -858,6 +909,13 @@ body.a11y-on .logoTitle{
   box-shadow:0 22px 46px rgba(0,0,0,.14);
   border-color: rgba(201,162,77,.35);
 }
+.page-basic .item.is-limit-locked{
+  border-color: rgba(211,47,47,.45);
+  background: linear-gradient(180deg,#fff,#fff7f7);
+}
+.page-basic .item.is-limit-locked label{
+  cursor:not-allowed;
+}
 .page-basic .item label{
   font-size:1.05rem;
   font-weight:500;
@@ -899,6 +957,14 @@ body.a11y-on .logoTitle{
   opacity:.55;
   background:#f5f5f5;
 }
+.page-basic #servings:focus-visible,
+.page-basic .number-picker select:focus-visible,
+.page-basic .form-field input:focus-visible,
+.page-basic .form-field select:focus-visible,
+.page-basic .form-field textarea:focus-visible{
+  outline:3px solid var(--focus);
+  outline-offset:3px;
+}
 .page-basic .eye-icon{
   width:36px;
   height:36px;
@@ -912,6 +978,13 @@ body.a11y-on .logoTitle{
   position:relative;
   user-select:none;
   box-shadow:0 12px 24px rgba(0,0,0,.10);
+  color:var(--text);
+  font:inherit;
+  padding:0;
+}
+.page-basic .eye-icon:focus-visible{
+  outline:3px solid var(--focus);
+  outline-offset:3px;
 }
 .page-basic .tooltip{ display:none !important; }
 
@@ -938,6 +1011,31 @@ body.a11y-on .logoTitle{
   font-size:.95rem;
 }
 .page-basic .remaining-hint.is-ok{ display:none; }
+.quota-toast{
+  position:fixed;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:2147482000;
+  width:min(680px, calc(100% - 28px));
+  padding:14px 18px;
+  border-radius:14px;
+  border:2px solid #b00020;
+  background:#fff4f4;
+  color:#7a0015;
+  font-weight:800;
+  text-align:center;
+  box-shadow:0 18px 46px rgba(0,0,0,.24);
+  display:none;
+}
+.quota-toast.is-visible{
+  display:block;
+  animation:quotaToastBlink .85s ease-in-out 0s 4;
+}
+@keyframes quotaToastBlink{
+  0%,100%{ background:#fff4f4; transform:translateX(-50%) scale(1); }
+  50%{ background:#ffe08a; transform:translateX(-50%) scale(1.025); }
+}
 
 /* Buttons */
 .page-basic .btn-row{ display:flex; justify-content:center; margin-top:22px; }

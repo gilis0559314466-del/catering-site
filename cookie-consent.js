@@ -14,13 +14,37 @@
     try { localStorage.setItem(LS_KEY, 'accepted'); } catch (e) {}
   }
 
+  var lastFocus = null;
+
+  function getFocusable(root) {
+    if (!root) return [];
+    return root.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+  }
+
+  function trapFocus(e) {
+    if (e.key !== 'Tab') return;
+    var modal = qs('#privacyModal');
+    var items = getFocusable(modal);
+    if (!items || !items.length) return;
+    var first = items[0];
+    var last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
   function openModal() {
     var modal = qs('#privacyModal');
     if (!modal) return;
+    lastFocus = document.activeElement;
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
 
-    // focus trap-lite: focus close btn
     var closeBtn = qs('#privacyCloseBtn');
     if (closeBtn) closeBtn.focus();
   }
@@ -30,6 +54,8 @@
     if (!modal) return;
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
   function showBanner() {
@@ -81,9 +107,10 @@
       if (e.target === modal) closeModal();
     });
 
-    // Close on ESC
     document.addEventListener('keydown', function (e) {
+      if (!modal || modal.getAttribute('aria-hidden') === 'true') return;
       if (e.key === 'Escape') closeModal();
+      trapFocus(e);
     });
   }
 

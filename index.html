@@ -222,7 +222,7 @@
         <img src="assets/logo.png" class="logo" alt="לוגו גיליז קייטרינג" loading="eager" decoding="async" />
         <!-- ✅ H1 יחיד -->
         <h1 class="logoTitle">קייטרינג לשבתות ואזכרות</h1>
-        <img src="assets/LandoNewLogo.svg" class="kosher" alt="סמל" loading="lazy" decoding="async" />
+        <img src="assets/LandoNewLogo.svg" class="kosher" alt="לוגו הכשרות" loading="lazy" decoding="async" />
       </div>
     </header>
 
@@ -311,10 +311,10 @@
 
         <div class="carousel-viewport" id="foodCarousel" aria-label="גלילה אופקית של תמונות אוכל">
           <div class="carousel-track" id="carouselTrack">
-            <div class="c-item"><img src="assets/בר1.jpg" alt="מנות קייטרינג בשרי - תמונה 1" loading="lazy" decoding="async"></div>
-            <div class="c-item"><img src="assets/בר2.jpg" alt="מנות קייטרינג בשרי - תמונה 2" loading="lazy" decoding="async"></div>
-            <div class="c-item"><img src="assets/בר3.jpg" alt="מנות קייטרינג בשרי - תמונה 3" loading="lazy" decoding="async"></div>
-            <div class="c-item"><img src="assets/בר9.png" alt="מנות קייטרינג בשרי - תמונה 4" loading="lazy" decoding="async"></div>
+            <button class="c-item" type="button" aria-label="פתח תמונה מוגדלת 1"><img src="assets/בר1.jpg" alt="מנות קייטרינג בשרי - תמונה 1" loading="lazy" decoding="async"></button>
+            <button class="c-item" type="button" aria-label="פתח תמונה מוגדלת 2"><img src="assets/בר2.jpg" alt="מנות קייטרינג בשרי - תמונה 2" loading="lazy" decoding="async"></button>
+            <button class="c-item" type="button" aria-label="פתח תמונה מוגדלת 3"><img src="assets/בר3.jpg" alt="מנות קייטרינג בשרי - תמונה 3" loading="lazy" decoding="async"></button>
+            <button class="c-item" type="button" aria-label="פתח תמונה מוגדלת 4"><img src="assets/בר9.png" alt="מנות קייטרינג בשרי - תמונה 4" loading="lazy" decoding="async"></button>
           </div>
         </div>
       </section>
@@ -325,7 +325,7 @@
           <h2 class="notes-title">קייטרינג בשרי במרכז - שירות מהיר ותפריטים לבחירה</h2>
           <p class="notes-sub">
             גיליז קייטרינג נותן מענה לאירועים קטנים וגדולים במרכז, עם תפריטים ברורים לבחירה, מנות חמות ושירות זמין.
-            אנחנו מקפידים על סדר, ניקיון ושקיפות מלאה בתהליך ההזמנה. בשרים גים ולחמים ברמ הכי גבוהה ובכשרות מהודת.
+            אנחנו מקפידים על סדר, ניקיון ושקיפות מלאה בתהליך ההזמנה. בשרים גים ולחמים ברמ הכי גבוהה ובכשרות מהודרת.
           </p>
           <p class="notes-sub" style="margin-top:10px;">
             תוכלו לבחור כאן דיל בסיסי או דיל מורחב ולהתקדם במהירות.
@@ -396,7 +396,8 @@
 
   <!-- ===== LIGHTBOX ===== -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="תמונה מוגדלת" tabindex="-1">
+    <div class="lightbox-inner" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" tabindex="-1">
+      <h2 id="lightbox-title" class="sr-only">תמונה מוגדלת</h2>
       <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="תמונה קודמת">‹</button>
       <img class="lightbox-img" id="lbImg" alt="תמונה מוגדלת">
       <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="תמונה הבאה">›</button>
@@ -496,6 +497,12 @@
         for (var t = 0; t < items.length; t++) {
           (function (idx) {
             items[idx].addEventListener("click", function () { openLightboxAt(idx); });
+            items[idx].addEventListener("keydown", function (e) {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openLightboxAt(idx);
+              }
+            });
           })(t);
         }
 
@@ -527,6 +534,7 @@
             b.className = "t-dot" + (i === index ? " active" : "");
             b.type = "button";
             b.setAttribute("aria-label", "המלצה " + (i + 1));
+            b.setAttribute("aria-current", i === index ? "true" : "false");
             (function (iCopy) {
               b.addEventListener("click", function () { index = iCopy; update(); restartAuto(); });
             })(i);
@@ -540,6 +548,7 @@
           for (var i = 0; i < dots.length; i++) {
             if (i === index) dots[i].classList.add("active");
             else dots[i].classList.remove("active");
+            dots[i].setAttribute("aria-current", i === index ? "true" : "false");
           }
         }
 
@@ -704,15 +713,7 @@
     })();
   </script>
 
-  <script>
-    window.CookieConsentConfig = {
-      companyName: 'גיליז קייטרינג',
-      contactEmail: 'gilis0559314466@gmail.com',
-      contactPhone: '055-931-4466',
-      updatedDate: '2026-02-12',
-      bannerText: 'האתר משתמש בקוקיז לצורכי מדידה ושיפור השירות.'
-    };
-  </script>
+  <script src="cookie-consent-config.js"></script>
   <script src="cookie-consent.bundle.js" defer></script>
 </body>
 
