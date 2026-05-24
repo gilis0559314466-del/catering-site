@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>תודה על ההזמנה | גיליז קייטרינג</title>
+  <meta name="description"
+    content="תודה שפניתם לגיליז קייטרינג. ההזמנה התקבלה ונציג יחזור אליכם בהקדם לאישור הפרטים וסגירה סופית." />
+  <link rel="canonical" href="https://giliscatering.co.il/thank-you.html" />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="theme-color" content="#1b3630" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <link rel="icon" type="image/png" href="assets/logo_icon.png" />
+  <link rel="apple-touch-icon" href="assets/logo_icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Fredoka:wght@300..700&family=Heebo:wght@100..900&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="a11y-widget.css" />
+  <script src="a11y-widget.js" defer></script>
+
+  <meta property="og:locale" content="he_IL" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="גיליז קייטרינג" />
+  <meta property="og:title" content="תודה על ההזמנה | גיליז קייטרינג" />
+  <meta property="og:description" content="ההזמנה התקבלה. נציג יחזור אליכם בהקדם לאישור הפרטים." />
+  <meta property="og:url" content="https://giliscatering.co.il/thank-you.html" />
+  <meta property="og:image" content="https://giliscatering.co.il/assets/og.jpg" />
+
+  <style>
+    .thank-page .hero {
+      min-height: 500px;
+      background:
+        linear-gradient(to bottom, rgb(0 0 0 / 62%), rgb(0 0 0 / 82%)),
+        url("assets/בר9.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 42px 16px;
+    }
+
+    .thank-page .hero-inner {
+      width: min(860px, 100%);
+    }
+
+    .thank-page .success-mark {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 18px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #1b3630;
+      background: linear-gradient(135deg, #f6e27a, #c9a24d);
+      box-shadow: 0 18px 46px rgba(0, 0, 0, .32);
+      font-size: 2.4rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .thank-page h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2.2rem, 6vw, 4.3rem);
+      font-weight: 900;
+      line-height: 1.08;
+      background: linear-gradient(90deg, var(--accent), #f6e27a, var(--accent));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .thank-page .hero-text {
+      margin: 0 auto;
+      max-width: 720px;
+      color: #fff;
+      font-size: clamp(1.08rem, 3vw, 1.45rem);
+      font-weight: 800;
+      line-height: 1.65;
+      text-wrap: balance;
+    }
+
+    .thank-page .thank-wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: -72px auto 72px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .thank-page .thank-card {
+      background: linear-gradient(180deg, var(--surface) 0%, var(--surface2) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 28px 60px var(--shadow);
+      overflow: hidden;
+    }
+
+    .thank-page .thank-card::before {
+      content: "";
+      display: block;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .thank-page .thank-content {
+      padding: 28px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .thank-page .next-title {
+      margin: 0 0 8px;
+      color: var(--primary);
+      font-size: clamp(1.45rem, 3vw, 1.9rem);
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .thank-page .next-sub {
+      margin: 0 auto;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.06rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.75;
+    }
+
+    .thank-page .steps {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .thank-page .step {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, .06);
+      background: #fff;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, .08);
+      text-align: center;
+    }
+
+    .thank-page .step-num {
+      width: 38px;
+      height: 38px;
+      margin: 0 auto 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(201, 162, 77, .18);
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .thank-page .step p {
+      margin: 0;
+      color: var(--text);
+      font-weight: 800;
+      line-height: 1.55;
+    }
+
+    .thank-page .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .thank-page .thank-btn {
+      min-height: 52px;
+      min-width: 190px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(201, 162, 77, .55);
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .12);
+      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+
+    .thank-page .thank-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, .16);
+    }
+
+    .thank-page .thank-btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+    }
+
+    .thank-page .thank-btn-secondary {
+      background: #fff;
+      color: var(--primary);
+    }
+
+    .thank-page .small-note {
+      margin: 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: .95rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 800px) {
+      .thank-page .hero {
+        min-height: 430px;
+        padding: 34px 14px;
+      }
+
+      .thank-page .thank-wrap {
+        width: min(100% - 24px, 1120px);
+        margin-top: -56px;
+      }
+
+      .thank-page .thank-content {
+        padding: 22px 16px;
+      }
+
+      .thank-page .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .thank-page .thank-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-home thank-page">
+  <a class="skip-link" href="#mainContent">דילוג לתוכן הראשי</a>
+
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="gi-phone" viewBox="0 0 24 24">
+      <path
+        d="M7 3h3l1.2 5-2.1 1.3a13.5 13.5 0 0 0 5.6 5.6L16 12.8 21 14v3c0 1.1-.9 2-2 2C10.2 19 5 13.8 5 5c0-1.1.9-2 2-2Z"
+        fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+    </symbol>
+    <symbol id="gi-mail" viewBox="0 0 24 24">
+      <path
+        d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z"
+        fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M5.5 7.5 12 12.2 18.5 7.5" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+    <symbol id="gi-clock" viewBox="0 0 24 24">
+      <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+  </svg>
+
+  <header class="top-header" role="banner">
+    <div class="header-inner">
+      <img src="assets/logo.png" class="logo" alt="לוגו גיליז קייטרינג" width="160" height="160" loading="eager"
+        decoding="async" />
+      <p class="logoTitle" aria-hidden="true">גיליז קייטרינג</p>
+      <img src="assets/kosher.png" class="kosher" alt="תעודת כשרות" width="120" height="120" loading="lazy"
+        decoding="async" />
+    </div>
+  </header>
+
+  <nav aria-label="ניווט" class="sr-only">
+    <a href="index.html">דף הבית</a>
+    <a href="bsisi.html">דיל בסיסי</a>
+    <a href="murchav.html">דיל מורחב</a>
+    <a href="areas.html">אזורי שירות</a>
+  </nav>
+
+  <div class="gold-marquee">
+    <div class="marquee-track" aria-label="מסר מתגלגל">
+      <span>• תודה שפניתם לגיליז קייטרינג • נציג יחזור אליכם בהקדם • אוכל חם ומכבד • שירות רגיש ומהיר •</span>
+      <span>• תודה שפניתם לגיליז קייטרינג • נציג יחזור אליכם בהקדם • אוכל חם ומכבד • שירות רגיש ומהיר •</span>
+      <span>• תודה שפניתם לגיליז קייטרינג • נציג יחזור אליכם בהקדם • אוכל חם ומכבד • שירות רגיש ומהיר •</span>
+    </div>
+  </div>
+
+  <section class="hero" aria-label="תודה על ההזמנה">
+    <div class="hero-inner">
+      <div class="success-mark" aria-hidden="true">✓</div>
+      <h1>תודה, ההזמנה התקבלה</h1>
+      <p class="hero-text">קיבלנו את הפרטים ששלחתם. נציג מטעם גיליז קייטרינג יחזור אליכם בהקדם לאישור ההזמנה, זמינות משלוח וסגירה סופית.</p>
+    </div>
+  </section>
+
+  <main id="mainContent" class="thank-wrap" role="main">
+    <section class="thank-card" aria-labelledby="nextTitle">
+      <div class="thank-content">
+        <div>
+          <h2 id="nextTitle" class="next-title">מה קורה עכשיו?</h2>
+          <p class="next-sub">אין צורך למלא שוב את הטופס. אם חסר פרט דחוף או שתרצו לעדכן משהו, אפשר לשלוח הודעת וואטסאפ או להתקשר ישירות.</p>
+        </div>
+
+        <ol class="steps" aria-label="שלבי המשך טיפול">
+          <li class="step">
+            <span class="step-num">1</span>
+            <p>אנחנו בודקים את פרטי ההזמנה ואת מועד האירוע.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">2</span>
+            <p>נציג חוזר אליכם לאישור סופי ולתיאום אספקה.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">3</span>
+            <p>אחרי האישור הסופי, ההזמנה נכנסת להכנה.</p>
+          </li>
+        </ol>
+
+        <div class="actions" aria-label="פעולות מהירות">
+          <a class="thank-btn thank-btn-primary" href="https://wa.me/972559314466" target="_blank" rel="noopener"
+            aria-label="פתיחת וואטסאפ לגיליז קייטרינג">הודעה בוואטסאפ</a>
+          <a class="thank-btn thank-btn-secondary" href="tel:+972559314466" aria-label="חיוג מהיר לגיליז קייטרינג">חיוג מהיר</a>
+          <a class="thank-btn thank-btn-secondary" href="index.html#products">חזרה לבחירת תפריט</a>
+        </div>
+
+        <p class="small-note">שעות מענה: א'-ה' 09:00-20:00 | ו' 09:00-13:00</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+  <script src="footer.js"></script>
+
+  <a class="whatsapp" href="https://wa.me/972559314466" target="_blank" rel="noopener"
+    aria-label="הזמנה בוואטסאפ">💬 להזמנה בוואטסאפ</a>
+  <a class="call-float-big" href="tel:+972559314466" aria-label="חיוג מהיר">📞 לחיוג מהיר</a>
+
+  <script src="cookie-consent-config.js"></script>
+  <script src="cookie-consent.bundle.js" defer></script>
+</body>
+
+</html>
