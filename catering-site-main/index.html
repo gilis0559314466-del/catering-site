@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✅ SEO: Title + Description (קצרים, טבעיים, ממוקדים) -->
+  <title>גיליז קייטרינג | קייטרינג בשרי במרכז לשבתות ואזכרות</title>
+  <meta name="description"
+    content="קייטרינג בשרי במרכז לשבתות, אזכרות ואירועים. תפריטים לבחירה, אוכל חם ושירות מהיר. הזמנה בוואטסאפ או בטלפון." />
+
+  <!-- ✅ Canonical + Robots -->
+  <link rel="canonical" href="https://giliscatering.co.il/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#1b3630" />
+
+  <!-- Favicon (קיים אצלך) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png" />
+
+  <!-- Performance hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+  <!-- ✅ Social (OG + Twitter) -->
+  <meta property="og:locale" content="he_IL" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="גיליז קייטרינג" />
+  <meta property="og:title" content="גיליז קייטרינג | קייטרינג בשרי במרכז" />
+  <meta property="og:description"
+    content="תפריטים לבחירה לשבתות, אזכרות ואירועים. אוכל חם, שירות מהיר ושקיפות מלאה בהזמנה." />
+  <meta property="og:url" content="https://giliscatering.co.il/" />
+  <meta property="og:image" content="https://giliscatering.co.il/assets/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="גיליז קייטרינג – קייטרינג בשרי במרכז" />L
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="גיליז קייטרינג | קייטרינג בשרי במרכז" />
+  <meta name="twitter:description" content="תפריטים לבחירה לשבתות, אזכרות ואירועים. הזמנה בוואטסאפ או בטלפון." />
+  <meta name="twitter:image" content="https://giliscatering.co.il/assets/og.jpg" />
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Fredoka:wght@300..700&family=Heebo:wght@100..900&display=swap"
+    rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="a11y-widget.css" />
+
+  <!-- A11y / Utility (לא משנה עיצוב קיים; רק נגישות/SEO) -->
+  <style>
+    /* נגישות: sr-only + skip-link בלי לפגוע בעיצוב */
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 9999;
+      padding: 10px 12px;
+      background: #fff;
+      color: #000;
+      border: 2px solid currentColor;
+      border-radius: 8px;
+      transform: translateY(-140%);
+      transition: transform .15s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+  </style>
+
+  <script src="a11y-widget.js" defer></script>
+
+  <!-- ✅ Structured data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://giliscatering.co.il/#org",
+        "name": "גיליז קייטרינג",
+        "url": "https://giliscatering.co.il/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://giliscatering.co.il/assets/logo.png"
+        },
+        "email": "mailto:gilis0559314466@gmail.com",
+        "telephone": "+972-55-931-4466"
+      },
+      {
+        "@type": "CateringBusiness",
+        "@id": "https://giliscatering.co.il/#business",
+        "name": "גיליז קייטרינג",
+        "url": "https://giliscatering.co.il/",
+        "telephone": "+972-55-931-4466",
+        "email": "mailto:gilis0559314466@gmail.com",
+        "priceRange": "₪₪",
+        "image": "https://giliscatering.co.il/assets/og.jpg",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Israel"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+            "opens": "09:00",
+            "closes": "20:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Friday",
+            "opens": "09:00",
+            "closes": "13:00"
+          }
+        ],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+972-55-931-4466",
+            "contactType": "customer service",
+            "availableLanguage": ["he"],
+            "areaServed": "IL"
+          }
+        ],
+        "parentOrganization": { "@id": "https://giliscatering.co.il/#org" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://giliscatering.co.il/#website",
+        "url": "https://giliscatering.co.il/",
+        "name": "גיליז קייטרינג",
+        "inLanguage": "he-IL"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://giliscatering.co.il/#webpage",
+        "url": "https://giliscatering.co.il/",
+        "name": "גיליז קייטרינג | קייטרינג בשרי במרכז לשבתות ואזכרות",
+        "isPartOf": { "@id": "https://giliscatering.co.il/#website" },
+        "about": { "@id": "https://giliscatering.co.il/#business" },
+        "inLanguage": "he-IL",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://giliscatering.co.il/assets/og.jpg"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="page-home">
+  <!-- Skip link לנגישות -->
+  <a class="skip-link" href="#products">דילוג לבחירת תפריט</a>
+
+  <noscript>
+    <div style="margin:16px;padding:12px;border:1px solid rgba(0,0,0,.15);border-radius:12px;background:#fff;">
+      כדי לבחור דילים, לפתוח תמונות ולבצע הזמנה, יש להפעיל JavaScript בדפדפן.
+    </div>
+  </noscript>
+
+  <!-- ===== ICONS SPRITE ===== -->
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="gi-phone" viewBox="0 0 24 24">
+      <path d="M7 3h3l1.2 5-2.1 1.3a13.5 13.5 0 0 0 5.6 5.6L16 12.8 21 14v3c0 1.1-.9 2-2 2C10.2 19 5 13.8 5 5c0-1.1.9-2 2-2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+    </symbol>
+    <symbol id="gi-mail" viewBox="0 0 24 24">
+      <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M5.5 7.5 12 12.2 18.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+    <symbol id="gi-clock" viewBox="0 0 24 24">
+      <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+    <symbol id="gi-truck" viewBox="0 0 24 24">
+      <path d="M3 7h10v10H3V7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+      <path d="M13 10h4l3 3v4h-7v-7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+      <path d="M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="none" stroke="currentColor" stroke-width="2" />
+    </symbol>
+    <symbol id="gi-plate" viewBox="0 0 24 24">
+      <path d="M12 20a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M12 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M19 5v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      <path d="M17 5v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      <path d="M15 5v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </symbol>
+    <symbol id="gi-chef" viewBox="0 0 24 24">
+      <path d="M7 10c-2.2 0-4-1.5-4-3.5S4.8 3 7 3c.7 0 1.4.2 2 .5A4 4 0 0 1 12 2a4 4 0 0 1 3 1.5c.6-.3 1.3-.5 2-.5 2.2 0 4 1.5 4 3.5S19.2 10 17 10H7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+      <path d="M8 10v10h8V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+      <path d="M9 14h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </symbol>
+  </svg>
+
+  <!-- ===== PAGE WRAP ===== -->
+  <div id="pageWrap">
+    <!-- ===== HEADER ===== -->
+    <header class="top-header" role="banner">
+      <div class="header-inner">
+        <img src="assets/logo.png" class="logo" alt="לוגו גיליז קייטרינג" loading="eager" decoding="async" />
+        <!-- ✅ H1 יחיד -->
+        <h1 class="logoTitle">קייטרינג לשבתות ואזכרות</h1>
+        <img src="assets/LandoNewLogo.svg" class="kosher" alt="לוגו הכשרות" loading="lazy" decoding="async" />
+      </div>
+    </header>
+
+    <!-- ✅ ניווט לזחילה בלי לפגוע בנגישות -->
+    <nav aria-label="ניווט ראשי" class="sr-only">
+      <a href="/bsisi.html">תפריט בסיסי</a>
+      <a href="/murchav.html">תפריט מורחב</a>
+      <a href="#products">בחירת דילים</a>
+      <a href="#testimonials">המלצות</a>
+    </nav>
+
+    <!-- ===== MARQUEE ===== -->
+    <div class="gold-marquee">
+      <div class="marquee-track" aria-label="מסר מתגלגל">
+        <span>• קייטרינג מוקפד • אוכל חם ומכבד • שירות רגיש ומהיר • שקט נפשי ברגעים החשובים •</span>
+        <span>• קייטרינג מוקפד • אוכל חם ומכבד • שירות רגיש ומהיר • שקט נפשי ברגעים החשובים •</span>
+        <span>• קייטרינג מוקפד • אוכל חם ומכבד • שירות רגיש ומהיר • שקט נפשי ברגעים החשובים •</span>
+      </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-label="פתיח">
+      <div>
+        <p>ברגעים של מתח, רגש והרבה דאגות - אנחנו כאן כדי להקל.</p>
+        <p>קייטרינג בשרי, חם, נקי ומסודר - עם שירות מהיר ומחיר משתלם.</p>
+        <p>בחרו תפריט כאן למטה בקלות, ואנחנו נדאג שהאוכל יגיע עד אליכם.</p>
+        <p class="small-note">גיליז קייטרינג • מרכז</p>
+
+        <p class="FOR_CTA" style="margin-top:10px;">
+          <a class="cta-main" href="#products" style="width: 100%;">לבחירת תפריט</a>
+        </p>
+      </div>
+    </section>
+
+    <main id="mainContent" role="main">
+      <!-- ===== PRODUCTS (JS inject) ===== -->
+      <section class="products-container" id="products" aria-label="דילים לבחירה"></section>
+
+      <!-- ===== IMPORTANT NOTES ===== -->
+      <section class="important-notes" aria-label="מידע חשוב לפני הזמנה">
+        <div class="notes-card">
+          <h2 class="notes-title">מידע חשוב לפני הזמנה</h2>
+          <p class="notes-sub">שקיפות מלאה כדי שתהיו רגועים וסגורים על הכל.</p>
+          <ul class="notes-grid">
+            <li class="note-item">
+              <span class="note-icon" aria-hidden="true">
+                <svg class="gi"><use href="#gi-plate"></use></svg>
+              </span>
+              <p class="note-text">מינימום 30 מנות בהזמנה</p>
+            </li>
+            <li class="note-item">
+              <span class="note-icon" aria-hidden="true">
+                <svg class="gi"><use href="#gi-clock"></use></svg>
+              </span>
+              <p class="note-text">
+                ניתן לערוך שינויים בהזמנה עד 48 שעות לפני האירוע
+                <small>לאחר מכן ייתכנו מגבלות זמינות.</small>
+              </p>
+            </li>
+            <li class="note-item">
+              <span class="note-icon" aria-hidden="true">
+                <svg class="gi"><use href="#gi-truck"></use></svg>
+              </span>
+              <p class="note-text">
+                המחיר לא כולל משלוח.
+                <small>מחיר משלוח יסוכם בשיחה עם נציג</small>
+              </p>
+            </li>
+            <li class="note-item">
+              <span class="note-icon" aria-hidden="true">
+                <svg class="gi"><use href="#gi-chef"></use></svg>
+              </span>
+              <p class="note-text">
+                ניתן להזמין מנהל אירוע וצוות מלצרים כולל כלי הגשה
+                <small>בתוספת תשלום.</small>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== FOOD CAROUSEL ===== -->
+      <section class="food-carousel" aria-label="קרוסלת תמונות אוכל" id="products_images">
+        <h2>מה מתבשל אצלנו</h2>
+        <p class="carousel-sub">אוכל חם, נקי ומכבד</p>
+
+        <div class="carousel-viewport" id="foodCarousel" aria-label="גלילה אופקית של תמונות אוכל">
+          <div class="carousel-track" id="carouselTrack">
+            <button class="c-item" type="button" aria-label="פתח תמונה מוגדלת 1"><img src="assets/בר1.jpg" alt="מנות קייטרינג בשרי - תמונה 1" loading="lazy" decoding="async"></button>
+            <button class="c-item" type="button" aria-label="פתח תמונה מוגדלת 2"><img src="assets/בר2.jpg" alt="מנות קייטרינג בשרי - תמונה 2" loading="lazy" decoding="async"></button>
+            <button class="c-item" type="button" aria-label="פתח תמונה מוגדלת 3"><img src="assets/בר3.jpg" alt="מנות קייטרינג בשרי - תמונה 3" loading="lazy" decoding="async"></button>
+            <button class="c-item" type="button" aria-label="פתח תמונה מוגדלת 4"><img src="assets/בר9.png" alt="מנות קייטרינג בשרי - תמונה 4" loading="lazy" decoding="async"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ✅ SEO: תוכן אמיתי -->
+      <section class="important-notes" aria-label="מידע על השירות">
+        <div class="notes-card">
+          <h2 class="notes-title">קייטרינג בשרי במרכז - שירות מהיר ותפריטים לבחירה</h2>
+          <p class="notes-sub">
+            גיליז קייטרינג נותן מענה לאירועים קטנים וגדולים במרכז, עם תפריטים ברורים לבחירה, מנות חמות ושירות זמין.
+            אנחנו מקפידים על סדר, ניקיון ושקיפות מלאה בתהליך ההזמנה. בשרים גים ולחמים ברמ הכי גבוהה ובכשרות מהודרת.
+          </p>
+          <p class="notes-sub" style="margin-top:10px;">
+            תוכלו לבחור כאן דיל בסיסי או דיל מורחב ולהתקדם במהירות.
+            אזור שירות: תל אביב, ראשון לציון, בת ים, חולון, רמת גן והסביבה (בהתאם לזמינות).
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== TESTIMONIALS ===== -->
+      <section class="testimonials" id="testimonials" aria-label="המלצות לקוחות">
+        <h2>לקוחות מספרים</h2>
+        <p class="testimonials-sub">ברגעים שצריך רגישות, דיוק ושקט נפשי</p>
+
+        <div class="t-carousel" aria-label="קרוסלת המלצות">
+          <button class="t-arrow t-prev" type="button" aria-label="המלצה קודמת">‹</button>
+
+          <div class="t-viewport">
+            <div class="t-track" id="tTrack">
+              <article class="t-card">
+                <p class="t-text">“האוכל הגיע חם, מסודר ובשפע. השירות היה רגיש ומכבד, וזה הוריד מאיתנו המון עומס ביום לא פשוט.”</p>
+                <div class="t-name">ע.א · ראשון לציון</div>
+              </article>
+                <article class="t-card">
+                <p class="t-text">“אני מרגישה צורך לכתוב לכם תודה רבה כהכרת הטוב. האורחים לא הפסיקו לשאול מאיפה האוכל. ”</p>
+                <div class="t-name">חיה לפקוביץ · בני ברק</div>
+              </article>
+                  <article class="t-card">
+                <p class="t-text">“אלופים!!! היה טעים!! ”</p>
+                <div class="t-name">מירית  ·  פתח תקוה</div>
+              </article>
+              <article class="t-card">
+                <p class="t-text">“קייטרינג ברמה גבוהה מאוד. הכל היה טעים, מוגש יפה, והאורחים החמיאו בלי סוף.”</p>
+                <div class="t-name">משפחת אבוטבול · תל אביב</div>
+              </article>
+              <article class="t-card">
+                <p class="t-text">“שירות מהיר, אוכל איכותי ותחושת ביטחון מהרגע הראשון. ממליצים בחום.”</p>
+                <div class="t-name">אייל מזרחי · בת ים</div>
+              </article>
+              <article class="t-card">
+                <p class="t-text">“זו לא פעם ראשונה שאני מזמינה מכם! וכל פעם נהנים מחדש! תודה רבה על אוכל טעים וחם בדיוק בזמן.”</p>
+                <div class="t-name">מירב לדאני · רמת גן</div>
+              </article>
+              <article class="t-card">
+                <p class="t-text">“תענוג. שליח הגיע עם הכל ארוז וחם. ממליצה ברמות!”</p>
+                <div class="t-name">אוריה מזור · יבנה</div>
+              </article>
+               
+            </div>
+          </div>
+
+          <button class="t-arrow t-next" type="button" aria-label="המלצה הבאה">›</button>
+        </div>
+
+        <div class="t-dots" id="tDots" aria-label="בחירת המלצה"></div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+   
+<div id="siteFooter"></div>
+ <script src="footer.js"></script>
+
+    <!-- Floating CTA -->
+    <a id="floatingBtn" class="whatsapp" href="https://wa.me/972559314466" target="_blank" rel="noopener"
+      aria-label="הזמנה בוואטסאפ"> 💬 להזמנה בוואטסאפ </a>
+    <a id="floatingBtn2" class="call-float-big" href="tel:+972559314466" aria-label="חיוג מהיר"> 📞 לחיוג מהיר </a>
+  </div><!-- /#pageWrap -->
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-inner" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" tabindex="-1">
+      <h2 id="lightbox-title" class="sr-only">תמונה מוגדלת</h2>
+      <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="תמונה קודמת">‹</button>
+      <img class="lightbox-img" id="lbImg" alt="תמונה מוגדלת">
+      <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="תמונה הבאה">›</button>
+      <button class="lb-close" id="lbClose" type="button" aria-label="סגור">×</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var products = [
+        { name: "דיל בסיסי", price: 49, desc: "הכולל: 7 סוגי סלטים, 3 סוגי תוספות, 3 סוגי מנות עיקריות לפי בחירתכם", img: "assets/S7.jpg", href: "bsisi.html", disabled: false },
+        { name: "דיל מורחב", price: 67, desc: "הכולל: 7 סוגי סלטים , 2 סוגי מנות ראשונות , 3 סוגי תוספות, 3 סוגי מנות עיקריות לפי בחירתכם", img: "assets/S6.jpg", href: "murchav.html", disabled: false },
+        { name: "דיל פרימיום", price: 90, desc: "זמנית, לא ניתן להזמין דיל פרימיום", img: "assets/S5.jpg", href: "one.html", disabled: true }
+      ];
+
+      function qs(sel, root) { return (root || document).querySelector(sel); }
+      function qsa(sel, root) { return (root || document).querySelectorAll(sel); }
+
+      function renderProducts() {
+        var container = document.getElementById("products");
+        if (!container) return;
+
+        var html = "";
+        for (var i = 0; i < products.length; i++) {
+          var p = products[i];
+          var delay = (i * 0.12);
+          html +=
+            '<div class="product" style="transition-delay:' + delay + 's">' +
+              ' <img src="' + p.img + '" alt="' + p.name + ' - קייטרינג בשרי במרכז" loading="lazy" decoding="async">' +
+              ' <h3>' + p.name + '</h3>' +
+              ' <p>' + p.desc + '</p>' +
+              ' <div class="price">' + p.price + ' ₪</div>' +
+              ' <button type="button" ' + (p.disabled ? 'disabled ' : '') +
+                'data-href="' + (p.href || '') + '" ' +
+                'aria-label="מעבר לבחירת טעמים עבור ' + p.name + '">' +
+                (p.disabled ? 'לא זמין כרגע' : 'לבחירת טעמים') +
+              '</button>' +
+            '</div>';
+        }
+        container.innerHTML = html;
+
+        container.addEventListener("click", function (e) {
+          var btn = e.target && e.target.closest ? e.target.closest("button") : null;
+          if (!btn) return;
+          if (btn.disabled) return;
+          var href = btn.getAttribute("data-href");
+          if (href) location.href = href;
+        });
+
+        revealProducts(container);
+      }
+
+      function revealProducts(container) {
+        var cards = qsa(".product", container);
+        if (!cards || !cards.length) return;
+
+        if (!("IntersectionObserver" in window)) {
+          for (var i = 0; i < cards.length; i++) cards[i].classList.add("in-view");
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          for (var j = 0; j < entries.length; j++) {
+            if (entries[j].isIntersecting) {
+              entries[j].target.classList.add("in-view");
+              observer.unobserve(entries[j].target);
+            }
+          }
+        }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
+
+        for (var k = 0; k < cards.length; k++) observer.observe(cards[k]);
+      }
+
+      function initFoodCarousel() {
+        var viewport = document.getElementById("foodCarousel");
+        var track = document.getElementById("carouselTrack");
+        if (!viewport || !track) return;
+
+        var items = qsa(".c-item", track);
+        if (!items || !items.length) return;
+
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+              if (entries[i].isIntersecting) {
+                for (var j = 0; j < items.length; j++) items[j].classList.remove("is-center");
+                entries[i].target.classList.add("is-center");
+              }
+            }
+          }, { root: viewport, threshold: 0.6 });
+
+          for (var k = 0; k < items.length; k++) io.observe(items[k]);
+        } else {
+          items[0].classList.add("is-center");
+        }
+
+        for (var t = 0; t < items.length; t++) {
+          (function (idx) {
+            items[idx].addEventListener("click", function () { openLightboxAt(idx); });
+            items[idx].addEventListener("keydown", function (e) {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openLightboxAt(idx);
+              }
+            });
+          })(t);
+        }
+
+        _lbImgs = [];
+        for (var m = 0; m < items.length; m++) {
+          var im = items[m].querySelector("img");
+          if (im) _lbImgs.push(im);
+        }
+      }
+
+      function initTestimonials() {
+        var track = document.getElementById("tTrack");
+        var dotsWrap = document.getElementById("tDots");
+        if (!track || !dotsWrap) return;
+
+        var cards = qsa(".t-card", track);
+        var prevBtn = qs(".t-prev");
+        var nextBtn = qs(".t-next");
+        if (!cards || !cards.length) return;
+
+        var index = 0;
+        var intervalMs = 15000;
+        var timer = null;
+
+        function renderDots() {
+          dotsWrap.innerHTML = "";
+          for (var i = 0; i < cards.length; i++) {
+            var b = document.createElement("button");
+            b.className = "t-dot" + (i === index ? " active" : "");
+            b.type = "button";
+            b.setAttribute("aria-label", "המלצה " + (i + 1));
+            b.setAttribute("aria-current", i === index ? "true" : "false");
+            (function (iCopy) {
+              b.addEventListener("click", function () { index = iCopy; update(); restartAuto(); });
+            })(i);
+            dotsWrap.appendChild(b);
+          }
+        }
+
+        function update() {
+          track.style.transform = "translateX(" + (-index * 100) + "%)";
+          var dots = qsa(".t-dot", dotsWrap);
+          for (var i = 0; i < dots.length; i++) {
+            if (i === index) dots[i].classList.add("active");
+            else dots[i].classList.remove("active");
+            dots[i].setAttribute("aria-current", i === index ? "true" : "false");
+          }
+        }
+
+        function next() { index = (index + 1) % cards.length; update(); }
+        function prev() { index = (index - 1 + cards.length) % cards.length; update(); }
+
+        function startAuto() { stopAuto(); timer = setInterval(next, intervalMs); }
+        function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
+        function restartAuto() { startAuto(); }
+
+        if (nextBtn) nextBtn.addEventListener("click", function () { next(); restartAuto(); });
+        if (prevBtn) prevBtn.addEventListener("click", function () { prev(); restartAuto(); });
+
+        var carousel = qs(".t-carousel");
+        if (carousel) {
+          carousel.addEventListener("mouseenter", stopAuto);
+          carousel.addEventListener("mouseleave", startAuto);
+          carousel.addEventListener("focusin", stopAuto);
+          carousel.addEventListener("focusout", startAuto);
+        }
+
+        renderDots();
+        update();
+
+        if (!window.__A11Y_NO_MOTION__) startAuto();
+
+        document.addEventListener('a11y:motionchange', function (e) {
+          var off = e && e.detail && e.detail.off;
+          if (off) {
+            stopAuto();
+            track.style.transition = "none";
+          } else {
+            track.style.transition = "";
+            startAuto();
+          }
+        });
+      }
+
+      var _lbImgs = [];
+      var _lbIndex = 0;
+      var _lastFocus = null;
+
+      function getFocusable(root) {
+        if (!root) return [];
+        return root.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+      }
+
+      function trapFocus(e, dialog) {
+        if (e.key !== "Tab") return;
+        var focusables = getFocusable(dialog);
+        if (!focusables || !focusables.length) return;
+
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+
+      function setBackgroundHidden(hidden) {
+        var page = document.getElementById("pageWrap");
+        if (!page) return;
+        if (hidden) {
+          page.setAttribute("aria-hidden", "true");
+        } else {
+          page.removeAttribute("aria-hidden");
+        }
+      }
+
+      function openLightboxAt(i) {
+        var lightbox = document.getElementById("lightbox");
+        var lbImg = document.getElementById("lbImg");
+        var btnClose = document.getElementById("lbClose");
+        if (!lightbox || !lbImg || !_lbImgs.length) return;
+
+        _lbIndex = i;
+        lbImg.src = _lbImgs[_lbIndex].getAttribute("src");
+        lbImg.alt = _lbImgs[_lbIndex].getAttribute("alt") || "תמונה מוגדלת";
+
+        _lastFocus = document.activeElement;
+
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+
+        setBackgroundHidden(true);
+        document.body.style.overflow = "hidden";
+
+        if (btnClose) btnClose.focus();
+      }
+
+      function closeLightbox() {
+        var lightbox = document.getElementById("lightbox");
+        var lbImg = document.getElementById("lbImg");
+        if (!lightbox || !lbImg) return;
+
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+
+        setBackgroundHidden(false);
+        lbImg.src = "";
+        document.body.style.overflow = "";
+
+        if (_lastFocus && _lastFocus.focus) _lastFocus.focus();
+      }
+
+      function lbNext() {
+        var lbImg = document.getElementById("lbImg");
+        if (!lbImg || !_lbImgs.length) return;
+        _lbIndex = (_lbIndex + 1) % _lbImgs.length;
+        lbImg.src = _lbImgs[_lbIndex].getAttribute("src");
+        lbImg.alt = _lbImgs[_lbIndex].getAttribute("alt") || "תמונה מוגדלת";
+      }
+
+      function lbPrev() {
+        var lbImg = document.getElementById("lbImg");
+        if (!lbImg || !_lbImgs.length) return;
+        _lbIndex = (_lbIndex - 1 + _lbImgs.length) % _lbImgs.length;
+        lbImg.src = _lbImgs[_lbIndex].getAttribute("src");
+        lbImg.alt = _lbImgs[_lbIndex].getAttribute("alt") || "תמונה מוגדלת";
+      }
+
+      function initLightbox() {
+        var lightbox = document.getElementById("lightbox");
+        var inner = qs(".lightbox-inner", lightbox);
+        var btnPrev = document.getElementById("lbPrev");
+        var btnNext = document.getElementById("lbNext");
+        var btnClose = document.getElementById("lbClose");
+        if (!lightbox || !inner) return;
+
+        if (btnNext) btnNext.addEventListener("click", lbNext);
+        if (btnPrev) btnPrev.addEventListener("click", lbPrev);
+        if (btnClose) btnClose.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", function (e) {
+          if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (!lightbox.classList.contains("open")) return;
+
+          if (e.key === "Escape") closeLightbox();
+          else if (e.key === "ArrowLeft") lbNext();
+          else if (e.key === "ArrowRight") lbPrev();
+
+          trapFocus(e, inner);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        renderProducts();
+        initFoodCarousel();
+        initTestimonials();
+        initLightbox();
+      });
+
+      window.openLightboxAt = openLightboxAt;
+    })();
+  </script>
+
+  <script src="cookie-consent-config.js"></script>
+  <script src="cookie-consent.bundle.js" defer></script>
+</body>
+
+</html>

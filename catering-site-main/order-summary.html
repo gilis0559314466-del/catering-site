@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>סיכום הזמנה - גיליז קייטרינג</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Heebo", sans-serif;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(18, 13, 8, 0.72), rgba(18, 13, 8, 0.82)),
+        url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      color: #2b2118;
+      padding: 24px;
+    }
+
+    .page {
+      max-width: 850px;
+      margin: auto;
+      background: rgba(255, 252, 246, 0.96);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.35);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1d1208, #3c2815);
+      color: #fff7df;
+      text-align: center;
+      padding: 38px 24px;
+      position: relative;
+    }
+
+    .header:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 12%;
+      left: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    }
+
+    .brand {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .subtitle {
+      margin: 8px 0 0;
+      font-size: 19px;
+      color: #e7cf83;
+      font-weight: 400;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid #d4af37;
+      color: #f5e4aa;
+      font-size: 14px;
+    }
+
+    .content {
+      padding: 34px;
+    }
+
+    .notice {
+      background: #fff6df;
+      border: 1px solid #ead18a;
+      border-radius: 18px;
+      padding: 16px 20px;
+      margin-bottom: 26px;
+      font-size: 16px;
+      color: #5b421d;
+    }
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: #3c2815;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .field {
+      background: #fff;
+      border: 1px solid #f0dfb1;
+      border-radius: 16px;
+      padding: 16px;
+      min-height: 78px;
+    }
+
+    .label {
+      display: block;
+      color: #8b6f35;
+      font-size: 14px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #24180f;
+      word-break: break-word;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .notes {
+      min-height: 105px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      flex: 1;
+      min-width: 180px;
+      border: none;
+      border-radius: 999px;
+      padding: 15px 22px;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: 0.25s;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #d4af37, #b98b1d);
+      color: #24180f;
+    }
+
+    .btn-secondary {
+      background: #2c1b0e;
+      color: #fff7df;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 24px;
+      background: #f6edda;
+      color: #6b552c;
+      font-size: 15px;
+    }
+
+    @media (max-width: 650px) {
+      body {
+        padding: 12px;
+      }
+
+      .content {
+        padding: 22px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        font-size: 28px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .actions {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="header">
+      <h1 class="brand">גיליז קייטרינג</h1>
+      <p class="subtitle">סיכום הזמנה</p>
+      <div class="badge">מסמך הזמנה דיגיטלי</div>
+    </header>
+
+    <section class="content">
+      <div class="notice">
+        פרטי ההזמנה מוצגים כאן כפי שנשלחו מהאתר. יש לבדוק את הפרטים ולאשר מול הלקוח.
+      </div>
+
+      <section class="section" aria-labelledby="customer-details-title">
+        <h2 class="section-title" id="customer-details-title">פרטי לקוח</h2>
+        <div class="grid">
+          <div class="field">
+            <span class="label">שם לקוח</span>
+            <span class="value" id="customerName"></span>
+          </div>
+
+          <div class="field">
+            <span class="label">טלפון</span>
+            <span class="value" id="phone"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="event-details-title">
+        <h2 class="section-title" id="event-details-title">פרטי האירוע</h2>
+        <div class="grid">
+          <div class="field">
+            <span class="label">תאריך אירוע</span>
+            <span class="value" id="date"></span>
+          </div>
+
+          <div class="field">
+            <span class="label">שעה</span>
+            <span class="value" id="time"></span>
+          </div>
+
+          <div class="field">
+            <span class="label">סוג אירוע</span>
+            <span class="value" id="eventType"></span>
+          </div>
+
+          <div class="field">
+            <span class="label">כמות סועדים</span>
+            <span class="value" id="guests"></span>
+          </div>
+
+          <div class="field full">
+            <span class="label">כתובת</span>
+            <span class="value" id="address"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="order-details-title">
+        <h2 class="section-title" id="order-details-title">פרטי ההזמנה</h2>
+        <div class="grid">
+          <div class="field">
+            <span class="label">דיל נבחר</span>
+            <span class="value" id="deal"></span>
+          </div>
+
+          <div class="field">
+            <span class="label">מחיר / הערכת מחיר</span>
+            <span class="value" id="price"></span>
+          </div>
+
+          <div class="field full">
+            <span class="label">הערות מיוחדות</span>
+            <span class="value notes" id="notes"></span>
+          </div>
+        </div>
+      </section>
+
+      <div class="actions">
+        <a class="btn btn-primary" id="whatsappBtn" href="https://wa.me/972559314466" target="_blank" rel="noopener">שליחה ללקוח בוואטסאפ</a>
+        <button class="btn btn-secondary" id="printBtn" type="button">שמירה / הדפסה כ-PDF</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      תודה שבחרתם גיליז קייטרינג | המסמך הופק אוטומטית מהאתר
+    </footer>
+  </main>
+
+  <script>
+    function getParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name) || "";
+    }
+
+    const data = {
+      name: getParam("name"),
+      phone: getParam("phone"),
+      date: getParam("date"),
+      time: getParam("time"),
+      eventType: getParam("eventType"),
+      guests: getParam("guests"),
+      address: getParam("address"),
+      deal: getParam("deal"),
+      price: getParam("price"),
+      notes: getParam("notes")
+    };
+
+    document.getElementById("customerName").innerText = data.name || "לא צוין";
+    document.getElementById("phone").innerText = data.phone || "לא צוין";
+    document.getElementById("date").innerText = data.date || "לא צוין";
+    document.getElementById("time").innerText = data.time || "לא צוין";
+    document.getElementById("eventType").innerText = data.eventType || "לא צוין";
+    document.getElementById("guests").innerText = data.guests || "לא צוין";
+    document.getElementById("address").innerText = data.address || "לא צוין";
+    document.getElementById("deal").innerText = data.deal || "לא צוין";
+    document.getElementById("price").innerText = data.price || "לא צוין";
+    document.getElementById("notes").innerText = data.notes || "אין הערות";
+
+    const currentLink = window.location.href;
+
+    const message =
+      "שלום " + (data.name || "") + ",%0A" +
+      "מצורף סיכום ההזמנה שלך מגיליז קייטרינג:%0A" +
+      currentLink + "%0A%0A" +
+      "נא לאשר שהפרטים נכונים.";
+
+    const cleanPhone = (data.phone || "").replace(/[^0-9]/g, "");
+    let whatsappPhone = cleanPhone;
+
+    if (whatsappPhone.startsWith("0")) {
+      whatsappPhone = "972" + whatsappPhone.substring(1);
+    }
+
+    const whatsappBtn = document.getElementById("whatsappBtn");
+    if (whatsappPhone) {
+      whatsappBtn.href = "https://wa.me/" + whatsappPhone + "?text=" + message;
+      whatsappBtn.removeAttribute("aria-disabled");
+    } else {
+      whatsappBtn.removeAttribute("href");
+      whatsappBtn.setAttribute("aria-disabled", "true");
+    }
+
+    document.getElementById("printBtn").addEventListener("click", function () {
+      window.print();
+    });
+  </script>
+  <script src="cookie-consent-config.js"></script>
+  <script src="cookie-consent.bundle.js" defer></script>
+</body>
+</html>

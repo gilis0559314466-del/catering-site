@@ -1,0 +1,82 @@
+
+
+
+<footer class="site-footer" aria-label="פוטר"> 
+  <div class="footer-container footer-2026">
+
+  
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/logo.png" class="footer-logo" alt="גיליז קייטרינג" loading="lazy" decoding="async" />
+        <div class="footer-brand-text">
+          <p class="footer-title">גיליז קייטרינג</p>
+          <p class="footer-tagline">קייטרינג חם עד הבית • הזמנה פשוטה • שירות מהיר</p>
+        </div>
+      </div>
+
+      <div class="footer-cta">
+        <a class="footer-btn footer-btn-primary" href="https://wa.me/972559314466" target="_blank" rel="noopener"
+          aria-label="הזמנה בוואטסאפ">הזמנה בוואטסאפ</a>
+        <a class="footer-btn footer-btn-outline" href="tel:+972559314466" aria-label="חיוג מהיר">חיוג מהיר</a>
+      </div>
+    </div>
+
+  
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <p class="footer-h">יצירת קשר</p>
+        <div class="footer-contact footer-contact-2026">
+          <p><svg class="gi" aria-hidden="true"><use href="#gi-phone"></use></svg> <a href="tel:+972559314466">055-931-4466</a></p>
+          <p><svg class="gi" aria-hidden="true"><use href="#gi-mail"></use></svg> <a href="mailto:gilis0559314466@gmail.com">gilis0559314466@gmail.com</a></p>
+          <p><svg class="gi" aria-hidden="true"><use href="#gi-clock"></use></svg> א'-ה': 09:00-20:00 | ו': 09:00-13:00</p>
+        </div>
+
+        <div class="footer-mini-badges" aria-label="יתרונות">
+          <span class="footer-badge">אוכל חם עד הבית</span>
+          <span class="footer-badge">תפריטים לבחירה</span>
+          <span class="footer-badge">מענה מהיר</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-h">דפים חשובים</p>
+        <div class="footer-links">
+          <a href="index.html#products">בחירת תפריט</a>
+          <a href="bsisi.html">דיל בסיסי</a>
+          <a href="murchav.html">דיל מורחב</a>
+          <a href="faq.html">שאלות נפוצות</a>
+          <a href="areas.html">אזורי שירות</a>
+          <a href="price-azkara.html">מחיר קייטרינג לאזכרה</a>
+          <a href="shabbat-catering.html">קייטרינג חם עד הבית</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-h">איך מזמינים</p>
+        <ol class="footer-steps">
+          <li>בוחרים דיל וסוגי מנות</li>
+          <li>ממלאים פרטים ושעת אספקה</li>
+          <li>נציג חוזר לסגירה סופית</li>
+        </ol>
+
+        <div class="footer-note">
+          <strong>הערה:</strong> המחיר אינו סופי — מחיר סופי נקבע דרך נציג השירות שיחזור אליכם.
+        </div>
+      </div>
+
+    </div>
+
+    
+    <div class="footer-bottom">
+      <div class="footer-copy footer-copy-2026">
+        <span>© כל הזכויות שמורות לגיליז קייטרינג בע''מ</span>
+        <span class="dot">•</span>
+        <span>התמונות באתר להמחשה בלבד</span>
+        <span class="dot">•</span>
+        <span>בניית אתרים | ירדן שירה 054-845-1910</span>
+      </div>
+    </div>
+
+  </div>
+</footer> 
