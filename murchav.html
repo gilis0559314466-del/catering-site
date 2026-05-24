@@ -1583,6 +1583,28 @@
         return t.replace(/\n+$/g, "");
       }
 
+      function buildItemsArray(data) {
+  var items = [];
+
+  function addItems(category, arr) {
+    for (var i = 0; i < arr.length; i++) {
+      items.push({
+        category: category,
+        name: arr[i].name,
+        qty: arr[i].qty
+      });
+    }
+  }
+
+  addItems("starter", data.starters);
+  addItems("salad", data.salads);
+  addItems("side", data.sides);
+  addItems("main", data.mains);
+  addItems("bread", data.breads);
+
+  return items;
+}
+
       function buildWhatsappText() {
         var name = ($("customerName").value || "").trim();
         var phone = ($("customerPhone").value || "").trim();
@@ -1668,6 +1690,7 @@
             eventDate: ($("eventDate").value || "").trim(),
             eventTime: ($("eventTime").value || "").trim(),
             orderNotes: ($("orderNotes").value || "").trim(),
+items: buildItemsArray(data),
 
             servings: data.servings,
             products: buildProductsText(data),

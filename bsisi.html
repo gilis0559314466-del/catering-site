@@ -305,10 +305,14 @@
 
         <!-- Menu Tabs -->
         <div class="menu-tabs" role="tablist" aria-label="קטגוריות לבחירת תפריט">
-          <button class="menu-tab is-active" type="button" role="tab" id="tab-salads" aria-controls="panel-salads" aria-selected="true">סלטים</button>
-          <button class="menu-tab" type="button" role="tab" id="tab-sides" aria-controls="panel-sides" aria-selected="false">תוספות</button>
-          <button class="menu-tab" type="button" role="tab" id="tab-mains" aria-controls="panel-mains" aria-selected="false">מנות עיקריות</button>
-          <button class="menu-tab" type="button" role="tab" id="tab-breads" aria-controls="panel-breads" aria-selected="false">לחמים</button>
+          <button class="menu-tab is-active" type="button" role="tab" id="tab-salads" aria-controls="panel-salads"
+            aria-selected="true">סלטים</button>
+          <button class="menu-tab" type="button" role="tab" id="tab-sides" aria-controls="panel-sides"
+            aria-selected="false">תוספות</button>
+          <button class="menu-tab" type="button" role="tab" id="tab-mains" aria-controls="panel-mains"
+            aria-selected="false">מנות עיקריות</button>
+          <button class="menu-tab" type="button" role="tab" id="tab-breads" aria-controls="panel-breads"
+            aria-selected="false">לחמים</button>
         </div>
 
         <!-- Salads -->
@@ -356,7 +360,8 @@
 
   <!-- POPUP -->
   <div id="summary-popup" aria-hidden="true">
-    <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="summary-title" aria-describedby="summary-text">
+    <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="summary-title"
+      aria-describedby="summary-text">
       <button id="close-popup" type="button" aria-label="סגירה">×</button>
       <h2 id="summary-title">סיכום ההזמנה</h2>
       <div id="summary-text"></div>
@@ -364,7 +369,8 @@
       <div class="form-grid" role="group" aria-label="פרטי הזמנה">
         <div class="form-field">
           <label for="customerName">שם המזמין *</label>
-          <input type="text" id="customerName" placeholder="שם מלא" autocomplete="name" required aria-describedby="formError">
+          <input type="text" id="customerName" placeholder="שם מלא" autocomplete="name" required
+            aria-describedby="formError">
         </div>
 
         <div class="form-field">
@@ -394,13 +400,14 @@
           </div>
         </div>
 
-        <div id="formError" class="form-error" role="alert" aria-live="assertive" aria-atomic="true" style="display:none;"></div>
+        <div id="formError" class="form-error" role="alert" aria-live="assertive" aria-atomic="true"
+          style="display:none;"></div>
       </div>
 
       <div class="form-field">
         <label for="orderNotes">הערות (לא חובה)</label>
-          <textarea id="orderNotes" aria-describedby="orderNotesHint"></textarea>
-          <div class="hint" id="orderNotesHint">אפשר לכתוב כל בקשה מיוחדת</div>
+        <textarea id="orderNotes" aria-describedby="orderNotesHint"></textarea>
+        <div class="hint" id="orderNotesHint">אפשר לכתוב כל בקשה מיוחדת</div>
       </div>
       <div class="popup-actions">
         <button id="send-order-btn" class="btn" type="button" disabled>
@@ -411,8 +418,8 @@
   </div>
 
   <!-- FOOTER -->
-<div id="siteFooter"></div>
- <script src="footer.js"></script>
+  <div id="siteFooter"></div>
+  <script src="footer.js"></script>
 
   <!-- Floating CTA -->
   <a id="floatingBtn" class="whatsapp" href="https://wa.me/972559314466" target="_blank" rel="noopener">
@@ -705,9 +712,9 @@
       function getTotal(type) {
         var list =
           (type === "salad") ? saladsList :
-          (type === "side") ? sidesList :
-          (type === "bread") ? breadsList :
-          mainsList;
+            (type === "side") ? sidesList :
+              (type === "bread") ? breadsList :
+                mainsList;
 
         var total = 0;
 
@@ -1451,6 +1458,26 @@
         return t.replace(/\n+$/g, "");
       }
 
+function buildItemsArray(data) {
+  var items = [];
+
+  function addItems(category, arr) {
+    for (var i = 0; i < arr.length; i++) {
+      items.push({
+        category: category,
+        name: arr[i].name,
+        qty: arr[i].qty
+      });
+    }
+  }
+
+  addItems("salad", data.salads);
+  addItems("side", data.sides);
+  addItems("main", data.mains);
+  addItems("bread", data.breads);
+
+  return items;
+}
       function buildWhatsappText() {
         var name = ($("customerName").value || "").trim();
         var phone = ($("customerPhone").value || "").trim();
@@ -1537,10 +1564,16 @@
             eventDate: ($("eventDate").value || "").trim(),
             eventTime: ($("eventTime").value || "").trim(),
             orderNotes: ($("orderNotes").value || "").trim(),
+
             servings: data.servings,
+            salads: data.salads,
+            sides: data.sides,
+            mains: data.mains,
+            breads: data.breads,
+
+            items: buildItemsArray(data),
+            
             products: buildProductsText(data),
-            extrasTotal: data.extrasTotal,
-            estimatedTotal: data.estimatedTotal,
             createdAt: data.createdAt,
             typeofMana: "בסיסי"
           };
@@ -1808,8 +1841,11 @@
   <script src="cookie-consent-config.js"></script>
   <script src="cookie-consent.bundle.js" defer></script>
 </body>
+
 </html>
 
 <!-- Injection By NetFree -->
-<script src="https://netfree.link/injection-script/note-in-site.js" type="text/javascript" async  id="netfree-note-site" jsondata="%7B%22noteSite%22:%22%D7%9B%D7%93%D7%99%20%D7%A9%D7%94%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%94%D7%96%D7%94%20%D7%99%D7%97%D7%96%D7%A8%D7%95%20%D7%9E%D7%91%D7%93%D7%99%D7%A7%D7%94%2C%20%D7%99%D7%A9%20%D7%9C%D7%94%D7%92%D7%93%D7%99%D7%A8%20%5C%22%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A1%D7%A0%D7%9F%20%D7%AA%D7%95%D7%9B%D7%9F%20%D7%A9%D7%99%D7%93%D7%95%D7%A2%20%D7%9B%D7%90%D7%99%D7%A9%D7%99%20%D7%90%D7%95%20%D7%A4%D7%A8%D7%98%D7%99%5C%22%20%D7%91%D7%94%D7%92%D7%93%D7%A8%D7%95%D7%AA%20%D7%A1%D7%99%D7%A0%D7%95%D7%9F%20%5B%5B%D7%A6%D7%90%D7%98_AI_%D7%91%D7%A0%D7%98%D7%A4%D7%A8%D7%99%7C%D7%94%D7%99%D7%9B%D7%A0%D7%A1%D7%95%20%D7%9C%D7%9B%D7%90%D7%9F%20%D7%9C%D7%94%D7%A1%D7%91%D7%A8%20%D7%9E%D7%A4%D7%95%D7%A8%D7%98%5D%5D%22%2C%22noteSiteEn%22:%22For%20images%20on%20this%20website%20to%20work%20you%20need%20to%20set%20%5C%22Filter%20content%20that%20is%20known%20as%20personal%20or%20private%5C%22%20%5B%5BAI_Chats_in_NetFree%7CClick%20here%20to%20read%20more%5D%5D%22%7D"></script><script src="//netfree.link/injection-script/go-payment.js" type="text/javascript" async ></script>
-<script src="//netfree.link/injection-script/popup-card-init.js" type="text/javascript" async ></script>
+<script src="https://netfree.link/injection-script/note-in-site.js" type="text/javascript" async id="netfree-note-site"
+  jsondata="%7B%22noteSite%22:%22%D7%9B%D7%93%D7%99%20%D7%A9%D7%94%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%94%D7%96%D7%94%20%D7%99%D7%97%D7%96%D7%A8%D7%95%20%D7%9E%D7%91%D7%93%D7%99%D7%A7%D7%94%2C%20%D7%99%D7%A9%20%D7%9C%D7%94%D7%92%D7%93%D7%99%D7%A8%20%5C%22%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A1%D7%A0%D7%9F%20%D7%AA%D7%95%D7%9B%D7%9F%20%D7%A9%D7%99%D7%93%D7%95%D7%A2%20%D7%9B%D7%90%D7%99%D7%A9%D7%99%20%D7%90%D7%95%20%D7%A4%D7%A8%D7%98%D7%99%5C%22%20%D7%91%D7%94%D7%92%D7%93%D7%A8%D7%95%D7%AA%20%D7%A1%D7%99%D7%A0%D7%95%D7%9F%20%5B%5B%D7%A6%D7%90%D7%98_AI_%D7%91%D7%A0%D7%98%D7%A4%D7%A8%D7%99%7C%D7%94%D7%99%D7%9B%D7%A0%D7%A1%D7%95%20%D7%9C%D7%9B%D7%90%D7%9F%20%D7%9C%D7%94%D7%A1%D7%91%D7%A8%20%D7%9E%D7%A4%D7%95%D7%A8%D7%98%5D%5D%22%2C%22noteSiteEn%22:%22For%20images%20on%20this%20website%20to%20work%20you%20need%20to%20set%20%5C%22Filter%20content%20that%20is%20known%20as%20personal%20or%20private%5C%22%20%5B%5BAI_Chats_in_NetFree%7CClick%20here%20to%20read%20more%5D%5D%22%7D"></script>
+<script src="//netfree.link/injection-script/go-payment.js" type="text/javascript" async></script>
+<script src="//netfree.link/injection-script/popup-card-init.js" type="text/javascript" async></script>
