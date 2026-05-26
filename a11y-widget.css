@@ -1629,6 +1629,6 @@ html.a11y-spacing-2 #zoomWrap * {
   }
 }
 
-[aria-live] {
+#fontPanel [aria-live] {
   display: none !important;
 }

@@ -231,6 +231,7 @@
 <body class="page-basic">
   <!-- Skip link לנגישות -->
   <a class="skip-link" href="#mainContent">דילוג לתוכן הראשי</a>
+  <a class="top-home-link" href="index.html" aria-label="חזרה לדף הבית">חזרה לדף הבית</a>
 
   <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
     <symbol id="gi-phone" viewBox="0 0 24 24">
@@ -772,10 +773,12 @@
         if (locked) {
           check.setAttribute("aria-disabled", "true");
           check.setAttribute("data-limit-locked", "true");
+          check.setAttribute("title", "הגעת למכסה בקטגוריה הזו. כדי לבחור פריט נוסף יש לבטל בחירה קיימת או להוריד כמות.");
           if (item) item.classList.add("is-limit-locked");
         } else {
           check.removeAttribute("aria-disabled");
           check.removeAttribute("data-limit-locked");
+          check.removeAttribute("title");
           if (item) item.classList.remove("is-limit-locked");
         }
       }
@@ -879,7 +882,7 @@
               stats = getMainStats();
             }
           }
-          showQuotaMessage("ניתן לבחור עד 3 סוגי עיקריות בלבד. הורדנו בחירות כדי לעמוד במגבלה.");
+          showQuotaMessage("הגעת למקסימום סוגי העיקריות: ניתן לבחור עד 3 סוגים. הורדנו בחירות כדי לעמוד במגבלה.");
         }
       }
 
@@ -899,7 +902,7 @@
                 sel3.value = "10";
               }
             }
-            showQuotaMessage("חרגת מהמגבלה של מספר המנות.");
+            showQuotaMessage("הכמות הכוללת של העיקריות לא יכולה לעבור את מספר המנות שבחרת.");
           }
 
           var checked = qsAll(".main-check:checked").length;
@@ -914,7 +917,7 @@
                 checked--;
               }
             }
-            showQuotaMessage("ניתן לבחור עד 3 סוגי עיקריות בלבד.");
+            showQuotaMessage(getQuotaBlockMessage("main"));
           }
           return;
         }
@@ -922,7 +925,10 @@
         var total2 = getTotal(type);
         if (total2 <= limit) return;
 
-        var list = (type === "salad") ? saladsList : sidesList;
+        var list =
+          (type === "salad") ? saladsList :
+            (type === "side") ? sidesList :
+              breadsList;
         for (var i = list.length - 1; i >= 0 && total2 > limit; i--) {
           var cb = $(type + "-" + i);
           var sel = $("qty-" + type + "-" + i);
@@ -934,8 +940,15 @@
           }
         }
 
-        if (type === "salad") showQuotaMessage("חרגת מהמגבלה של 7 סלטים בסך הכל.");
-        if (type === "side") showQuotaMessage("חרגת מהמגבלה של 3 תוספות בסך הכל.");
+        showQuotaMessage(getQuotaBlockMessage(type));
+      }
+
+      function getQuotaBlockMessage(type) {
+        if (type === "salad") return "הגעת למקסימום: בדיל הזה אפשר לבחור עד 7 סלטים בסך הכל. כדי לבחור סלט אחר, בטל/י סלט קיים או הורד/י כמות.";
+        if (type === "side") return "הגעת למקסימום: בדיל הזה אפשר לבחור עד 3 תוספות בסך הכל. כדי לבחור תוספת אחרת, בטל/י תוספת קיימת או הורד/י כמות.";
+        if (type === "bread") return "בדיל הזה אפשר לבחור לחם אחד בלבד. כדי לבחור לחם אחר, בטל/י את הבחירה הנוכחית.";
+        if (type === "main") return "הגעת למגבלת העיקריות: עד 3 סוגים ובכמות כוללת עד מספר המנות שבחרת.";
+        return "הגעת למכסה בקטגוריה הזו.";
       }
 
       function handleCheckboxChange(type, idx) {
@@ -947,11 +960,12 @@
           if (type === "main") {
             var checkedNow = qsAll(".main-check:checked").length;
             if (checkedNow > LIMIT_MAIN_TYPES) {
-              showQuotaMessage("ניתן לבחור עד 3 סוגי עיקריות בלבד.");
+              showQuotaMessage(getQuotaBlockMessage("main"));
               cb.checked = false;
               sel.disabled = true;
               sel.value = String(defaultQty(type));
               applyLocking("main");
+              updateRemainingHints();
               return;
             }
           }
@@ -959,11 +973,12 @@
           var limit = getLimit(type);
           var before = getTotal(type) - defaultQty(type);
           if (before >= limit) {
-            showQuotaMessage("עברת את המכסה בקטגוריה הזו. כדי לבחור פריט נוסף, בטל/י בחירה קיימת או הורד/י כמות.");
+            showQuotaMessage(getQuotaBlockMessage(type));
             cb.checked = false;
             sel.disabled = true;
             sel.value = String(defaultQty(type));
             applyLocking(type);
+            updateRemainingHints();
             return;
           }
 
@@ -1226,39 +1241,57 @@
       function setRemainingHint(elId, msg) {
         var el = $(elId);
         if (!el) return;
-        if (!msg) {
-          el.textContent = "";
-          el.classList.add("is-ok");
-        } else {
-          el.textContent = msg;
-          el.classList.remove("is-ok");
-        }
+        el.textContent = msg || "";
+        el.classList.toggle("is-ok", !!msg);
       }
 
       function updateRemainingHints() {
         var saladsTotal = getTotal("salad");
         var saladsLeft = LIMIT_SALADS - saladsTotal;
-        setRemainingHint("salads-remaining", (saladsLeft > 0) ? ("אפשר לבחור עוד " + saladsLeft + " סלטים  ") : "");
+        setRemainingHint(
+          "salads-remaining",
+          "מותר לבחור עד " + LIMIT_SALADS + " סלטים בסך הכל. נבחרו " + saladsTotal + ". " +
+          ((saladsLeft > 0) ? ("נותרו לך עוד " + saladsLeft + " לבחירה.") : "הגעת למקסימום הסלטים. כדי לבחור סלט אחר, בטל/י בחירה קיימת או הורד/י כמות.")
+        );
 
         var sidesTotal = getTotal("side");
         var sidesLeft = LIMIT_SIDES - sidesTotal;
-        setRemainingHint("sides-remaining", (sidesLeft > 0) ? ("אפשר לבחור עוד " + sidesLeft + " תוספות  ") : "");
+        setRemainingHint(
+          "sides-remaining",
+          "מותר לבחור עד " + LIMIT_SIDES + " תוספות בסך הכל. נבחרו " + sidesTotal + ". " +
+          ((sidesLeft > 0) ? ("נותרו לך עוד " + sidesLeft + " לבחירה.") : "הגעת למקסימום התוספות. כדי לבחור תוספת אחרת, בטל/י בחירה קיימת או הורד/י כמות.")
+        );
 
         var mainsTotal = getTotal("main");
         var servings = num($("servings").value, 30);
         var mainsLeft = servings - mainsTotal;
 
-        var msg = "";
-        if (mainsLeft > 0) msg = "אפשר לבחור עוד " + mainsLeft + " מנות עיקריות (עד " + servings + ")  ";
-
         var breadsTotal = getTotal("bread");
         var breadsLeft = LIMIT_BREADS - breadsTotal;
-        setRemainingHint("breads-remaining", (breadsLeft > 0) ? ("אפשר לבחור עוד " + breadsLeft + " לחם") : "");
+        setRemainingHint(
+          "breads-remaining",
+          "מותר לבחור " + LIMIT_BREADS + " סוג לחם. נבחרו " + breadsTotal + ". " +
+          ((breadsLeft > 0) ? "נותר לך לבחור לחם אחד." : "נבחר לחם. כדי להחליף, בטל/י את הבחירה הנוכחית.")
+        );
 
-        var typesLeft = LIMIT_MAIN_TYPES - qsAll(".main-check:checked").length;
-        if (typesLeft > 0) msg += (msg ? " · " : "") + "אפשר לבחור עוד " + typesLeft + " סוגי עיקריות";
+        var selectedMainTypes = qsAll(".main-check:checked").length;
+        var typesLeft = LIMIT_MAIN_TYPES - selectedMainTypes;
+        var mainParts = [
+          "מותר לבחור עד " + LIMIT_MAIN_TYPES + " סוגי עיקריות, ובכמות כוללת עד " + servings + " מנות.",
+          "נבחרו " + selectedMainTypes + " סוגים ו-" + mainsTotal + " מנות."
+        ];
 
-        setRemainingHint("mains-remaining", msg);
+        if (typesLeft > 0 && mainsLeft > 0) {
+          mainParts.push("נותרו לך עוד " + typesLeft + " סוגים ועוד " + mainsLeft + " מנות לבחירה.");
+        } else if (typesLeft <= 0 && mainsLeft > 0) {
+          mainParts.push("הגעת למקסימום סוגי העיקריות. אפשר להגדיל כמות לעיקריות שכבר בחרת עד עוד " + mainsLeft + " מנות.");
+        } else if (typesLeft > 0 && mainsLeft <= 0) {
+          mainParts.push("הגעת למקסימום הכמות לפי מספר המנות. כדי לבחור עיקרית נוספת, הורד/י כמות מעיקרית קיימת.");
+        } else {
+          mainParts.push("הגעת למקסימום העיקריות. כדי לשנות, בטל/י בחירה קיימת או הורד/י כמות.");
+        }
+
+        setRemainingHint("mains-remaining", mainParts.join(" "));
       }
 
       function openPopup() {
